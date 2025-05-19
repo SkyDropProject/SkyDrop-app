@@ -3,10 +3,14 @@ import * as Font from 'expo-font';
 import {useEffect, useState} from "react";
 
 export default function Index() {
-    useEffect(() => {
-        Font.loadAsync({
+
+    async function loadFonts() {
+        await Font.loadAsync({
             'Inter': require('../assets/fonts/InterVariable.ttf'),
         });
+    }
+    useEffect(() => {
+        loadFonts();
     }, []);
   return (
     <View
