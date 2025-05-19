@@ -5,7 +5,7 @@ const { width } = Dimensions.get("window");
 const InputField = (props : inputProps) => {
     return (
         <>
-            <TextInput style={[styles.input, props.disabled && styles.disabledInput]} placeholder={props.placeholder} value={props.value} onChangeText={props.onChangeText} editable={!props.disabled} />
+            <TextInput style={[styles.input, props.disabled && styles.disabledInput]} placeholder={props.placeholder} value={props.value} onChangeText={props.onChangeText} editable={!props.disabled} secureTextEntry={props.secureTextEntry} />
             {props.error && <Text style={styles.errorText}>{props.error}</Text>}
         </>
     )

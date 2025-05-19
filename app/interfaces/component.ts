@@ -4,6 +4,7 @@ interface inputProps{
     onChangeText: (text: string) => void;
     error?: string;
     disabled?: boolean;
+    secureTextEntry? : boolean;
 }
 
 interface SubmitButtonProps {
