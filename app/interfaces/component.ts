@@ -11,4 +11,9 @@ interface SubmitButtonProps {
     onPress: () => void;
 }
 
-export { inputProps, SubmitButtonProps }
+interface CategoryButtonProps {
+    icon: string;
+    text: string;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps }
