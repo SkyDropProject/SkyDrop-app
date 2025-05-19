@@ -1,6 +1,13 @@
-import { Text, View } from "react-native";
+import {Text, View} from "react-native";
+import * as Font from 'expo-font';
+import {useEffect, useState} from "react";
 
 export default function Index() {
+    useEffect(() => {
+        Font.loadAsync({
+            'Inter': require('../assets/fonts/InterVariable.ttf'),
+        });
+    }, []);
   return (
     <View
       style={{
