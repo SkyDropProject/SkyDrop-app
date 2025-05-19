@@ -1,10 +1,6 @@
 import {Dimensions, StyleSheet, Text, TouchableOpacity} from "react-native";
+import {SubmitButtonProps} from "@/app/interfaces/component";
 const { width } = Dimensions.get("window");
-
-interface SubmitButtonProps {
-    text: string;
-    onPress: () => void;
-}
 
 const SubmitButton = (props : SubmitButtonProps)  => {
     return (
@@ -20,11 +16,15 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 12,
         alignItems: "center",
-        width: width * 0.8,
+        justifyContent: "center",
+        width: width * 0.75,
+        height: 45,
+        cursor: "pointer",
     },
     buttonText: {
         fontFamily: 'Inter',
-        fontSize: 20,
+        fontSize: 14,
+        fontWeight: 'bold',
         color: "#fff",
     },
 });
