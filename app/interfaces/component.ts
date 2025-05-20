@@ -26,4 +26,9 @@ interface ProductCardProps {
     icon: typeof Icon[keyof typeof Icon];
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, ProductCardProps }
+interface MenuBarProps {
+    activeTab: string;
+    onTabPress: (tab: string) => void;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, ProductCardProps, MenuBarProps }

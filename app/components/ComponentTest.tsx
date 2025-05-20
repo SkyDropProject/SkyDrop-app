@@ -4,11 +4,13 @@ import InputField from "@/app/components/InputField";
 import SubmitButton from "@/app/components/SubmitButton";
 import {useState} from "react";
 import {View} from "react-native";
-import ProductCard from "@/app/components/ProductCard";
+import MenuBar from "@/app/components/MenuBar";
 
 const ComponentTest = () => {
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
+    
+    const [activeTab, setActiveTab] = useState('home');
     return(
         <View style={{
             flex: 1,
@@ -33,6 +35,8 @@ const ComponentTest = () => {
             <InputField placeholder={"Mot de passe"} value={password} onChangeText={setPassword} disabled/>
             <SubmitButton text={"Se connecter"} onPress={() => {
             }}/>
+            
+            <MenuBar activeTab={activeTab} onTabPress={setActiveTab} />
         </View>
     )
 }
