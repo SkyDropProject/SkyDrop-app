@@ -21,11 +21,12 @@ const MenuBar = ({ activeTab, onTabPress }: MenuBarProps) => {
                     key={tab.id}
                     style={[
                         styles.tab,
-                        activeTab === tab.id && styles.activeTab,
+                        tab.id === "drone" && styles.droneTab,
                     ]}
                     onPress={() => onTabPress(tab.id)}
                 >
-                    { activeTab === tab.id ? <tab.icon_selected width={24} height={24} /> : <tab.icon width={24} height={24} /> }
+                    { activeTab === tab.id ? <tab.icon_selected width={24} height={24} /> :
+                        (tab.id === "drone" ? <tab.icon width={27} height={27} /> : <tab.icon width={24} height={24} /> ) }
                     <Text style={[styles.text,
                         activeTab === tab.id && styles.activeText]}>
                         {tab.label}
@@ -45,18 +46,13 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignItems: "center",
         backgroundColor: "#fff",
-        paddingVertical: 10,
-        borderTopWidth: 1,
-        borderTopColor: "#ccc",
+        paddingVertical: 5,
+        borderWidth: 0
     },
     tab: {
-        flex: 1,
+        display: "flex",
         alignItems: "center",
-        padding: 10,
-    },
-    activeTab: {
-        borderBottomWidth: 2,
-        borderBottomColor: "#007BFF",
+        justifyContent: "center",
     },
     text: {
         color: "#007BFF",
@@ -68,6 +64,16 @@ const styles = StyleSheet.create({
     activeText: {
         opacity: 1,
     },
+    droneTab : {
+        position: "relative",
+        bottom: 25,
+        backgroundColor: "#613EEA",
+        borderRadius: '50%',
+        padding: 30,
+        width:30,
+        height:30,
+        boxShadow: "0px 0px 10px #613EEA",
+    }
 
 });
 

@@ -4,15 +4,17 @@ const { width } = Dimensions.get("window");
 
 const InputField = (props : inputProps) => {
     return (
-        <>
+        <View style={styles.InputField}>
             <TextInput style={[styles.input, props.disabled && styles.disabledInput]} placeholder={props.placeholder} value={props.value} onChangeText={props.onChangeText} editable={!props.disabled} secureTextEntry={props.secureTextEntry} />
             {props.error && <Text style={styles.errorText}>{props.error}</Text>}
-        </>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-
+    InputField:{
+        display: "flex",
+    },
     input: {
         backgroundColor: '#fff',
         borderRadius: 12,
@@ -24,18 +26,16 @@ const styles = StyleSheet.create({
         width: width * 0.75,
         height: 50,
     },
-
     disabledInput: {
         backgroundColor: '#F0F0F0',
         borderColor: '#E0E0E0',
     },
     errorText: {
-        alignSelf: 'flex-start',
         fontSize: 12,
         color: 'red',
         fontWeight: 'light',
-        marginLeft: 52,
-        marginTop: -5,
+        marginLeft: 3,
+        marginTop: 2,
         marginBottom:5
     },
 
