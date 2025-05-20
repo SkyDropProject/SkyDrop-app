@@ -1,22 +1,25 @@
 import {CategoryButtonProps} from "@/app/interfaces/component";
-import {StyleSheet, TouchableOpacity, Image, Text} from "react-native";
+import {StyleSheet, TouchableOpacity, Text} from "react-native";
 
 const CategoryButton = (props : CategoryButtonProps) => {
     return(
-        <TouchableOpacity>
-            <Image style={styles.image} />
-            <Text style={styles.texte}>{props.text}</Text>
+        <TouchableOpacity style={styles.button}>
+            {props.icon && <props.icon />}
+            <Text style={styles.text}>{props.text}</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
-    image : {
-        width: 24,
-        height: 24,
+    button : {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    texte : {
-
+    text: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#000',
     }
 
 })

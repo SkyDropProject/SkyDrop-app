@@ -1,3 +1,5 @@
+import Icon from "@/app/utils/Icon";
+
 interface inputProps{
     placeholder?: string;
     value: string;
@@ -13,8 +15,15 @@ interface SubmitButtonProps {
 }
 
 interface CategoryButtonProps {
-    icon: string;
-    text: string;
+    icon: typeof Icon[keyof typeof Icon];
+    text?: string;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps }
+interface ProductCardProps {
+    name: string;
+    description: string;
+    price: number;
+    icon: typeof Icon[keyof typeof Icon];
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, ProductCardProps }

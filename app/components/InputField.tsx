@@ -14,6 +14,7 @@ const InputField = (props : inputProps) => {
 const styles = StyleSheet.create({
 
     input: {
+        backgroundColor: '#fff',
         borderRadius: 12,
         borderWidth: 1,
         borderColor: "#C5C6CC",
