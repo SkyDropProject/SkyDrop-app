@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: width * 0.75,
         height: 45,
-        cursor: "pointer",
     },
     buttonText: {
         fontFamily: 'Inter',

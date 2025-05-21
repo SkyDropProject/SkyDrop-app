@@ -24,4 +24,10 @@ interface MenuBarProps {
     onTabPress: (tab: string) => void;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps }
+interface ProfileButtonProps {
+    text: string;
+    icon: typeof Icon[keyof typeof Icon];
+    onPress?: () => void;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps }
