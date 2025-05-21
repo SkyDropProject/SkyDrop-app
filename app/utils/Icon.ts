@@ -32,7 +32,7 @@ const Icon = Object.freeze({
     catalog_selected : catalog_selected,
     home : home,
     home_selected : home_selected,
-    profile : user,
+    profile_menu : user,
     profile_selected : user_selected,
     drone : drone,
     drone_selected : drone_selected,
