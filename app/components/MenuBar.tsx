@@ -11,7 +11,7 @@ const MenuBar = ({ activeTab, onTabPress }: MenuBarProps) => {
         { id: "catalog", label: intl.formatMessage({id:"catalogMenu"}), icon: Icon.catalog, icon_selected: Icon.catalog_selected },
         { id: "drone", label: "Drone", icon: Icon.drone, icon_selected: Icon.drone_selected },
         { id: "cart", label: intl.formatMessage({id:"cartMenu"}), icon: Icon.cart, icon_selected: Icon.cart_selected },
-        { id: "profile", label: intl.formatMessage({id:"profileMenu"}), icon: Icon.profile, icon_selected: Icon.profile_selected },
+        { id: "profile", label: intl.formatMessage({id:"profileMenu"}), icon: Icon.profile_menu, icon_selected: Icon.profile_selected },
     ];
 
     return (

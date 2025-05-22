@@ -3,7 +3,6 @@ import { Text, View } from "react-native";
 import { langs } from "./interfaces/lang.js";
 import { en } from "./lang/en";
 import { fr } from "./lang/fr";
-import ComponentTest from "@/app/components/ComponentTest";
 
 const Index = () => {
   const messages : langs = {
@@ -24,7 +23,6 @@ return (
                 gap: 10,
             }}
         >
-            <ComponentTest />
         </View>
     </IntlProvider>
 );

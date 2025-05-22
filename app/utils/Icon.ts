@@ -13,6 +13,12 @@ import user from "@/assets/svg/menu/user.svg";
 import user_selected from "@/assets/svg/menu/user_selected.svg";
 import drone from "@/assets/svg/menu/drone.svg";
 import drone_selected from "@/assets/svg/menu/drone_selected.svg";
+import arrow_right from "@/assets/svg/arrow_right.svg";
+import lock from "@/assets/svg/Lock.svg";
+import logout from "@/assets/svg/Logout.svg";
+import megaphone from "@/assets/svg/megaphone.svg";
+import order from "@/assets/svg/order.svg";
+import profile from "@/assets/svg/Profile.svg";
 
 const Icon = Object.freeze({
     alcool: alcoolSvg,
@@ -26,10 +32,16 @@ const Icon = Object.freeze({
     catalog_selected : catalog_selected,
     home : home,
     home_selected : home_selected,
-    profile : user,
+    profile_menu : user,
     profile_selected : user_selected,
     drone : drone,
-    drone_selected : drone_selected
+    drone_selected : drone_selected,
+    arrow_right : arrow_right,
+    lock : lock,
+    logout : logout,
+    megaphone : megaphone,
+    order : order,
+    profile : profile
 });
 
 export default Icon;
