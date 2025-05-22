@@ -25,7 +25,7 @@ const MenuBar = ({ activeTab, onTabPress }: MenuBarProps) => {
                     ]}
                     onPress={() => onTabPress(tab.id)}
                 >
-                    { activeTab === tab.id ? <tab.icon_selected width={24} height={24} /> :
+                    { activeTab === tab.id ? (tab.id === "drone" ? <tab.icon_selected width={27} height={27} /> : <tab.icon_selected width={24} height={24} /> ) :
                         (tab.id === "drone" ? <tab.icon width={27} height={27} /> : <tab.icon width={24} height={24} /> ) }
                     <Text style={[styles.text,
                         activeTab === tab.id && styles.activeText]}>
@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#613EEA",
         borderRadius: '50%',
         padding: 30,
-        width:30,
-        height:30,
+        width:27,
+        height:27,
         boxShadow: "0px 0px 10px #613EEA",
     }
 

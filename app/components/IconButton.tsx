@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         alignItems: "center",
         justifyContent: "space-between",
-        width: width * 0.75,
-        height: 50,
+        width: width * 0.85,
+        height: 60,
         backgroundColor: "#fff",
         paddingHorizontal: 15
     },

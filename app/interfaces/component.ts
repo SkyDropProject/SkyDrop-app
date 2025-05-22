@@ -30,4 +30,9 @@ interface ProfileButtonProps {
     onPress?: () => void;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps }
+interface AccountProps {
+    name: string;
+    email: string;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps }
