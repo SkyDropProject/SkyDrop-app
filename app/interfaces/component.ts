@@ -1,4 +1,5 @@
 import Icon from "@/app/utils/Icon";
+import {BodySize, TitleSize} from "@/app/utils/Typography";
 
 interface inputProps{
     placeholder?: string;
@@ -35,4 +36,14 @@ interface AccountProps {
     email: string;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps }
+interface TitleProps {
+    size: keyof typeof TitleSize;
+    text: string;
+}
+
+interface BodyProps {
+    size: keyof typeof BodySize;
+    text: string;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps }

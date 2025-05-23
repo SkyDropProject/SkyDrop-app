@@ -3,11 +3,16 @@ import IconButton from "@/app/components/IconButton";
 import Icon from "@/app/utils/Icon";
 import Account from "@/app/components/Account";
 import {useIntl} from "react-intl";
+import TitleText from "@/app/components/TitleText";
+import {TitleSize} from "@/app/utils/Typography";
 
 const ProfileTab = () => {
     const intl = useIntl()
     return(
         <View style={styles.profilemenu}>
+            <View style={styles.header}>
+                <TitleText size={TitleSize.h2} text={intl.formatMessage({id:"account_title"})} />
+            </View>
             <View style={styles.account}>
                 <Account name={"Ian Bertin"} email={"ian.bertin@etu.mines-ales.fr"} />
             </View>
@@ -32,7 +37,7 @@ const styles = StyleSheet.create({
         height: "100%",
     },
     account : {
-        marginTop: 50,
+        marginTop: 40,
     },
     buttons : {
         marginTop: 50,
@@ -41,6 +46,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         gap: 15,
+    },
+    header : {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "85%",
+        height: 50,
+        paddingHorizontal: 15,
+        marginTop: 5
     }
 })
 export default ProfileTab;

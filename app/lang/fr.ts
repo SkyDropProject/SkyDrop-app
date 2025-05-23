@@ -10,7 +10,8 @@ const fr : lang = {
     "order_history": "Historique de commandes",
     "notification_settings": "Paramètres de notifications",
     "privacy_policy": "Politique de confidentialité",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "account_title": "Mon compte"
 }
 
 export { fr }

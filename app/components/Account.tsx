@@ -1,6 +1,8 @@
 import Icon from "../utils/Icon";
 import {StyleSheet, View, Text, Dimensions} from "react-native";
 import {AccountProps} from "@/app/interfaces/component";
+import TitleText from "@/app/components/TitleText";
+import {TitleSize} from "@/app/utils/Typography";
 const { width } = Dimensions.get("window");
 
 const Account = (props: AccountProps) => {
@@ -8,7 +10,7 @@ const Account = (props: AccountProps) => {
         <View style={styles.Account}>
             <Icon.profile style={styles.profile} />
             <View>
-                <Text>{props.name}</Text>
+                <TitleText size={TitleSize.h2} text={props.name} />
                 <Text>{props.email}</Text>
             </View>
         </View>

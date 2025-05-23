@@ -19,6 +19,7 @@ import logout from "@/assets/svg/Logout.svg";
 import megaphone from "@/assets/svg/megaphone.svg";
 import order from "@/assets/svg/order.svg";
 import profile from "@/assets/svg/Profile.svg";
+import heart from "@/assets/svg/heart.svg";
 
 const Icon = Object.freeze({
     alcool: alcoolSvg,
@@ -41,7 +42,8 @@ const Icon = Object.freeze({
     logout : logout,
     megaphone : megaphone,
     order : order,
-    profile : profile
+    profile : profile,
+    heart : heart,
 });
 
 export default Icon;
