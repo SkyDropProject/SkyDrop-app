@@ -1,4 +1,5 @@
 import Icon from "@/app/utils/Icon";
+import {BodySize, TitleSize} from "@/app/utils/Typography";
 
 interface inputProps{
     placeholder?: string;
@@ -30,4 +31,19 @@ interface ProfileButtonProps {
     onPress?: () => void;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps }
+interface AccountProps {
+    name: string;
+    email: string;
+}
+
+interface TitleProps {
+    size: keyof typeof TitleSize;
+    text: string;
+}
+
+interface BodyProps {
+    size: keyof typeof BodySize;
+    text: string;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps }
