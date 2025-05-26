@@ -1,0 +1,40 @@
+import {StyleSheet, View} from "react-native";
+import QuantityButton from "@/app/components/QuantityButton";
+import Icon from "@/app/utils/Icon";
+import {useState} from "react";
+import {BodySize} from "@/app/utils/Typography";
+import BodyText from "@/app/components/BodyText";
+import {QuantityComponentProps} from "@/app/interfaces/component";
+
+const QuantityComponent = (props : QuantityComponentProps) => {
+
+    const addQuantity = () => {
+        props.setQuantity(props.quantity+1)
+    }
+
+    const removeQuantity = () => {
+        if(props.quantity === 1) return;
+        props.setQuantity(props.quantity-1)
+    }
+    return(
+        <View style={styles.QuantityComponent}>
+            <QuantityButton icon={Icon.minus} onPress={removeQuantity}/>
+            <BodyText size={BodySize.medium} text={props.quantity.toString()} />
+            <QuantityButton icon={Icon.add} onPress={addQuantity} />
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    QuantityComponent : {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 5,
+        backgroundColor: "#fff",
+        borderRadius: 12,
+    }
+})
+
+export default QuantityComponent;

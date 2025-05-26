@@ -5,16 +5,53 @@ import Account from "@/app/components/Account";
 import {useIntl} from "react-intl";
 import TitleText from "@/app/components/TitleText";
 import {TitleSize} from "@/app/utils/Typography";
+import {useEffect, useState} from "react";
+import {UserType} from "@/app/interfaces/User";
 
 const ProfileTab = () => {
     const intl = useIntl()
+    const [user, setUser] = useState<UserType>({
+        _id: "",
+        accountType: "",
+        address: "",
+        city: "",
+        favoriteProductsId: [],
+        password: "",
+        phone: "",
+        registrationDate: new Date(),
+        stripeId: "",
+        token: "",
+        verificationDate: undefined,
+        zip: "",
+        firstName: "", lastName: "", email: ""});
+    const initUser = () => {
+        // init User ici
+        const user : UserType = {
+            firstName: "Ian",
+            lastName: "Bertin",
+            email: "ian.bertin@etu.mines-ales.fr",
+            password: "",
+            registrationDate: new Date(),
+            address: "",
+            zip: "",
+            city: "",
+            phone: "",
+            accountType: "",
+            favoriteProductsId: []
+        }
+        setUser(user)
+    }
+
+    useEffect(() => {
+        initUser()
+    },[]);
     return(
         <View style={styles.profilemenu}>
             <View style={styles.header}>
                 <TitleText size={TitleSize.h2} text={intl.formatMessage({id:"account_title"})} />
             </View>
             <View style={styles.account}>
-                <Account name={"Ian Bertin"} email={"ian.bertin@etu.mines-ales.fr"} />
+                <Account name={user.firstName + " " + user.lastName} email={user.email} />
             </View>
             <View style={styles.buttons}>
                 <IconButton text={intl.formatMessage({id:"personal_information"})} icon={Icon.profile} />
@@ -32,12 +69,11 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: "#F9F9F9",
         width: "100%",
         height: "100%",
     },
     account : {
-        marginTop: 40,
+        marginTop: 10,
     },
     buttons : {
         marginTop: 50,
@@ -53,7 +89,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         width: "85%",
-        height: 50,
         paddingHorizontal: 15,
         marginTop: 5
     }
