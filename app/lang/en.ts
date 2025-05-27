@@ -11,7 +11,9 @@ const en : lang = {
     "notification_settings": "Notification settings",
     "privacy_policy": "Privacy policy",
     "logout": "Logout",
-    "account_title": "My account"
+    "account_title": "My account",
+    "cart_title": "My cart",
+    "article_title": "items"
 }
 
 export { en }

@@ -11,17 +11,20 @@ const styles = StyleSheet.create({
         h1:{
             fontFamily: 'Inter',
             fontWeight: 'bold',
-            fontSize: 24
+            fontSize: 24,
+            marginBottom: 20,
         },
         h2:{
             fontFamily: 'Inter',
             fontWeight: 'bold',
             fontSize: 16,
+            marginBottom: 20,
         },
         h3:{
             fontFamily: 'Inter',
             fontWeight: 'bold',
             fontSize: 14,
+            marginBottom: 20,
         }
     })
 

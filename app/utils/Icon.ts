@@ -20,6 +20,10 @@ import megaphone from "@/assets/svg/megaphone.svg";
 import order from "@/assets/svg/order.svg";
 import profile from "@/assets/svg/Profile.svg";
 import heart from "@/assets/svg/heart.svg";
+import add from "@/assets/svg/Add.svg";
+import minus from "@/assets/svg/Minus.svg";
+import heart_filled from "@/assets/svg/heart_filled.svg";
+import cross from "@/assets/svg/cross.svg"
 
 const Icon = Object.freeze({
     alcool: alcoolSvg,
@@ -44,6 +48,10 @@ const Icon = Object.freeze({
     order : order,
     profile : profile,
     heart : heart,
+    add : add,
+    minus : minus,
+    heart_filled : heart_filled,
+    cross: cross
 });
 
 export default Icon;

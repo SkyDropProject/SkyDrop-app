@@ -3,13 +3,13 @@ import Icon from "@/app/utils/Icon";
 import { MenuBarProps } from "@/app/interfaces/component";
 import {useIntl} from "react-intl";
 
-const MenuBar = ({ activeTab, onTabPress }: MenuBarProps) => {
+const MenuBar = (props: MenuBarProps) => {
     const intl = useIntl()
 
     const tabs = [
         { id: "home", label: intl.formatMessage({id:"homeMenu"}), icon: Icon.home, icon_selected: Icon.home_selected },
         { id: "catalog", label: intl.formatMessage({id:"catalogMenu"}), icon: Icon.catalog, icon_selected: Icon.catalog_selected },
-        { id: "drone", label: "Drone", icon: Icon.drone, icon_selected: Icon.drone_selected },
+        { id: "drone", label: "", icon: Icon.drone, icon_selected: Icon.drone_selected },
         { id: "cart", label: intl.formatMessage({id:"cartMenu"}), icon: Icon.cart, icon_selected: Icon.cart_selected },
         { id: "profile", label: intl.formatMessage({id:"profileMenu"}), icon: Icon.profile_menu, icon_selected: Icon.profile_selected },
     ];
@@ -23,12 +23,12 @@ const MenuBar = ({ activeTab, onTabPress }: MenuBarProps) => {
                         styles.tab,
                         tab.id === "drone" && styles.droneTab,
                     ]}
-                    onPress={() => onTabPress(tab.id)}
+                    onPress={() => props.onTabPress(tab.id)}
                 >
-                    { activeTab === tab.id ? (tab.id === "drone" ? <tab.icon_selected width={27} height={27} /> : <tab.icon_selected width={24} height={24} /> ) :
+                    { props.activeTab === tab.id ? (tab.id === "drone" ? <tab.icon_selected width={27} height={27} /> : <tab.icon_selected width={24} height={24} /> ) :
                         (tab.id === "drone" ? <tab.icon width={27} height={27} /> : <tab.icon width={24} height={24} /> ) }
                     <Text style={[styles.text,
-                        activeTab === tab.id && styles.activeText]}>
+                        props.activeTab === tab.id && styles.activeText]}>
                         {tab.label}
                     </Text>
                 </TouchableOpacity>

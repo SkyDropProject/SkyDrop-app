@@ -2,15 +2,15 @@ import {BodyProps} from "@/app/interfaces/component";
 import {StyleSheet,Text} from "react-native";
 const BodyText = (props : BodyProps) => {
     return(
-        <Text style={styles[props.size]}>props.text</Text>
+        <Text style={styles[props.size]}>{props.text}</Text>
     )
 }
 
 const styles = StyleSheet.create({
     small:{
         fontFamily: 'Inter',
-        fontWeight: 'regular',
-        fontSize: 14,
+        fontWeight: 'light',
+        fontSize: 12,
     },
     medium:{
         fontFamily: 'Inter',
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     xlarge:{
         fontFamily: 'Inter',
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 16,
     }
 })
 
