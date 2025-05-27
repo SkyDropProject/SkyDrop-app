@@ -1,9 +1,10 @@
-import { View, StyleSheet, Image } from "react-native";
+import {View, StyleSheet, Image, TouchableOpacity} from "react-native";
 import LikeButton from "@/app/components/LikeButton";
 import {useState} from "react";
 import {ProductType} from "@/app/interfaces/Product";
 import BodyText from "@/app/components/BodyText";
 import {BodySize} from "@/app/utils/Typography";
+import ProductDetail from "@/app/components/ProductDetail";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
     const [isLiked,setIsLiked] = useState(false)
@@ -13,7 +14,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
     }
 
     return(
-        <View style={styles.ProductCard}>
+          <TouchableOpacity style={styles.ProductCard} activeOpacity={0.8}>
             <View style={styles.likeButton}>
                 <LikeButton isLiked={isLiked} onPress={toggleLike} />
             </View>
@@ -27,8 +28,8 @@ const ProductCard = ({ product }: { product: ProductType }) => {
                     <BodyText size={BodySize.xlarge} text={product.price + " €"} />
                 </View>
             </View>
-        </View>
-    )
+        </TouchableOpacity>
+    );
 }
 
 const styles = StyleSheet.create({

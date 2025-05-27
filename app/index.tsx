@@ -1,5 +1,5 @@
 import { IntlProvider, useIntl } from 'react-intl';
-import {Platform, Text, View, StyleSheet} from "react-native";
+import { Text, View} from "react-native";
 import { langs } from "./interfaces/lang.js";
 import { en } from "./lang/en";
 import { fr } from "./lang/fr";
@@ -17,7 +17,7 @@ const Index = () => {
    
   const language = navigator.language?.split('-')[0];
   const locale = Object.keys(messages).includes(language) ? language : 'fr';
-  const [activeTab, setActiveTab] = useState<string>("home");
+  const [activeTab, setActiveTab] = useState("home");
 
   const renderContent = () => {
       switch (activeTab) {
@@ -45,7 +45,7 @@ return (
                 }}
             >
                 {renderContent()}
-                <MenuBar activeTab={activeTab} onTabPress={setActiveTab} ></MenuBar>
+                <MenuBar activeTab={activeTab} onTabPress={setActiveTab} />
             </View>
         </IntlProvider>
 );

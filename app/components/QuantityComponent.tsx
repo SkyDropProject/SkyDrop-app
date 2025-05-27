@@ -1,7 +1,6 @@
 import {StyleSheet, View} from "react-native";
 import QuantityButton from "@/app/components/QuantityButton";
 import Icon from "@/app/utils/Icon";
-import {useState} from "react";
 import {BodySize} from "@/app/utils/Typography";
 import BodyText from "@/app/components/BodyText";
 import {QuantityComponentProps} from "@/app/interfaces/component";

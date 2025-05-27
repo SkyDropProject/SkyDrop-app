@@ -1,6 +1,7 @@
 import Icon from "@/app/utils/Icon";
 import {BodySize, TitleSize} from "@/app/utils/Typography";
 import QuantityComponent from "@/app/components/QuantityComponent";
+import {ProductType} from "@/app/interfaces/Product";
 
 interface inputProps{
     placeholder?: string;
@@ -62,4 +63,8 @@ interface QuantityComponentProps {
     setQuantity: (quantity: number) => void;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps, QuantityButtonProps, LikeButtonProps, QuantityComponentProps }
+interface ProductDetailProps {
+    product: ProductType;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps, QuantityButtonProps, LikeButtonProps, QuantityComponentProps, ProductDetailProps }

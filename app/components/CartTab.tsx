@@ -32,7 +32,7 @@ const CartTab = () => {
             <View style={styles.header}>
                 <TitleText size={TitleSize.h2} text={intl.formatMessage({id:"cart_title"})} />
             </View>
-            <View style={{...styles.header, ...styles.article}}>
+            <View style={styles.header}>
                 <TitleText size={TitleSize.h3} text={intl.formatMessage({id:"article_title"}) + " (" + products.length + ")"} />
             </View>
             {
@@ -53,9 +53,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "100%",
         height: "100%",
-    },
-    article:{
-        marginTop: 20,
     },
     header:{
         display: "flex",

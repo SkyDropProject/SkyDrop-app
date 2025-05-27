@@ -1,4 +1,4 @@
-import {Button, StyleSheet, TouchableOpacity} from "react-native";
+import { StyleSheet, TouchableOpacity} from "react-native";
 import {QuantityButtonProps} from "@/app/interfaces/component";
 
 const QuantityButton = (props : QuantityButtonProps) => {
