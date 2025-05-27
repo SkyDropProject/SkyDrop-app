@@ -8,6 +8,10 @@ import MenuBar from "@/app/components/MenuBar";
 import {useState} from "react";
 import CartTab from "@/app/components/CartTab";
 import CatalogTab from "@/app/components/CatalogTab";
+import LoginTab from "@/app/components/LoginTab";
+import InscriptionTab from "@/app/components/InscriptionTab";
+import {AlertProvider} from "@/app/components/AlertContext";
+import Alert from "@/app/components/Alert";
 
 const Index = () => {
   const messages : langs = {
@@ -22,7 +26,7 @@ const Index = () => {
   const renderContent = () => {
       switch (activeTab) {
           case "home":
-              return <Text>Home</Text>;
+              return <InscriptionTab />;
           case "catalog":
               return <CatalogTab/>;
           case "drone":
@@ -34,6 +38,7 @@ const Index = () => {
       }
   }
 return (
+    <AlertProvider>
         <IntlProvider locale={locale} messages={messages[locale]}>
             <View
                 style={{
@@ -42,12 +47,15 @@ return (
                     alignItems: "center",
                     gap: 10,
                     backgroundColor: "#F9F9F9",
+                    position: "relative"
                 }}
             >
+                <Alert />
                 {renderContent()}
                 <MenuBar activeTab={activeTab} onTabPress={setActiveTab} />
             </View>
         </IntlProvider>
+    </AlertProvider>
 );
 }
 

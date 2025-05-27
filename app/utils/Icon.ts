@@ -24,6 +24,11 @@ import add from "@/assets/svg/Add.svg";
 import minus from "@/assets/svg/Minus.svg";
 import heart_filled from "@/assets/svg/heart_filled.svg";
 import cross from "@/assets/svg/cross.svg"
+import calendar from "@/assets/svg/calendar.svg";
+import error from "@/assets/svg/error.svg";
+import success from "@/assets/svg/success.svg";
+import warning from "@/assets/svg/warning.svg";
+import info from "@/assets/svg/info.svg";
 
 const Icon = Object.freeze({
     alcool: alcoolSvg,
@@ -51,7 +56,12 @@ const Icon = Object.freeze({
     add : add,
     minus : minus,
     heart_filled : heart_filled,
-    cross: cross
+    cross: cross,
+    calendar : calendar,
+    error : error,
+    success : success,
+    warning : warning,
+    info : info,
 });
 
 export default Icon;

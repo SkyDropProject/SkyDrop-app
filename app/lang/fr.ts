@@ -13,7 +13,8 @@ const fr : lang = {
     "logout": "Déconnexion",
     "account_title": "Mon compte",
     "cart_title": "Mon panier",
-    "article_title": "Article"
+    "article_title": "Article",
+    "welcome": "Bienvenue !"
 }
 
 export { fr }
