@@ -1,12 +1,15 @@
-// Learn more https://docs.expo.io/guides/customizing-metro
 const { getDefaultConfig } = require('expo/metro-config');
-const {withNativeWind} = require("nativewind/metro");
-
-/** @type {import('expo/metro-config').MetroConfig} */
-const config = getDefaultConfig(__dirname);
-config.transformer.assetPlugins = ['expo-asset/tools/hashAssetFiles'];
-config.transformer.babelTransformerPath = require.resolve('react-native-svg-transformer');
-config.resolver.assetExts = config.resolver.assetExts.filter(ext => ext !== 'svg');
-config.resolver.sourceExts.push('svg');
-
-module.exports = withNativeWind(config, { input: './app/globals.css' });
+module.exports = (() => {
+    const config = getDefaultConfig(__dirname);
+    const { transformer, resolver } = config;
+    config.transformer = {
+        ...transformer,
+        babelTransformerPath: require.resolve('react-native-svg-transformer'),
+    };
+    config.resolver = {
+        ...resolver,
+        assetExts: resolver.assetExts.filter(ext => ext !== 'svg'),
+        sourceExts: [...resolver.sourceExts, 'svg'],
+    };
+    return config;
+})();
