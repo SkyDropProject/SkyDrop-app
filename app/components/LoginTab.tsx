@@ -9,11 +9,34 @@ import LinkButton from "@/app/components/LinkButton";
 import SubmitButton from "@/app/components/SubmitButton";
 import {useIntl} from "react-intl";
 import BodyText from "@/app/components/BodyText";
+import {useAlert} from "@/app/components/AlertContext";
+import {LoginTabProps} from "@/app/interfaces/component";
 const { width, height } = Dimensions.get("window");
-const LoginTab = () => {
+
+const LoginTab = (props : LoginTabProps) => {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const intl = useIntl()
+
+    const { showAlert } = useAlert();
+
+    const handleSubmit = async  () => {
+        const payload = {
+            email,
+            password,
+        }
+        // const response = await login(payload);
+        // if(response.status !== 200){
+        //     if(response.status === 401){
+        //         showAlert("Vos informations ne sont pas valides", "error");
+        //     }else{
+        //         showAlert("Une erreur s'est produite", "warning");
+        //     }
+        // }else{
+        //     const {token,user} = response.data;
+        //     localStorage.setItem("token", token);
+        // }
+    }
     return(
         <View style={styles.login}>
             <Image source={banner} style={styles.banner} />
@@ -29,11 +52,11 @@ const LoginTab = () => {
                     <LinkButton text={"Mot de passe oublié ?"}/>
                 </View>
                 <View style={styles.buttonText}>
-                    <SubmitButton text={"Se connecter"} onPress={() => {}} />
+                    <SubmitButton text={"Se connecter"} onPress={handleSubmit} />
                 </View>
                 <View style={styles.buttonText}>
                     <BodyText size={BodySize.small} text={"Pas de compte ?"} />
-                    <LinkButton text={"Inscrivez-vous"} />
+                    <LinkButton text={"Inscrivez-vous"} onPress={props.onPress} />
                 </View>
             </View>
         </View>
@@ -49,7 +72,7 @@ const styles = StyleSheet.create({
     },
     banner:{
         width: width,
-        height: 340,
+        height: 500,
         backgroundColor: "#c7dfe2"
     },
     viewUtil:{

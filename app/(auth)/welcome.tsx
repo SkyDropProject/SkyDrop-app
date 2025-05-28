@@ -1,14 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {Text, View} from 'react-native';
+import LoginTab from "@/app/components/LoginTab";
+import InscriptionTab from "@/app/components/InscriptionTab";
 
-class Welcome extends Component {
-    render() {
-        return (
-            <Text>
-                
-            </Text>
-        );
-    }
+const Welcome = () => {
+    const [isInscription, setIsInscription] = useState<boolean>(false);
+    return (
+        isInscription ? (
+            <InscriptionTab onPress={() => setIsInscription(false)} />
+            ) : (<LoginTab onPress={() => setIsInscription(true)} />)
+
+    )
 }
 
 export default Welcome;

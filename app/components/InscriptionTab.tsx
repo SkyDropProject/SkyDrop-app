@@ -1,16 +1,19 @@
-import {Dimensions, Image, StyleSheet, View} from "react-native";
+import {Dimensions, Image, ScrollView, StyleSheet, View} from "react-native";
 // @ts-ignore
 import banner from "@/assets/images/banner.png";
 import TitleText from "@/app/components/TitleText";
-import {TitleSize} from "@/app/utils/Typography";
+import {BodySize, TitleSize} from "@/app/utils/Typography";
 import InputField from "@/app/components/InputField";
 import {useState} from "react";
 import SubmitButton from "@/app/components/SubmitButton";
 import DateInput from "@/app/components/DateInput";
 import {useAlert} from "@/app/components/AlertContext";
+import {InscriptionTabProps} from "@/app/interfaces/component";
+import LinkButton from "@/app/components/LinkButton";
+import BodyText from "@/app/components/BodyText";
 const { width, height } = Dimensions.get("window");
 
-const InscriptionTab = () => {
+const InscriptionTab = (props : InscriptionTabProps) => {
     const [firstName,setFirstName] = useState("")
     const [lastName,setLastName] = useState("")
     const [email,setEmail] = useState("")
@@ -21,7 +24,7 @@ const InscriptionTab = () => {
 
     const { showAlert } = useAlert();
 
-    const handleSubmit = () => {
+    const handleSubmit = async  () => {
         const payload = {
             email: email,
             password: password,
@@ -31,11 +34,25 @@ const InscriptionTab = () => {
             birthdate: date,
             phone: phone
         }
-        showAlert("incroyable", "success")
+        // const response = await inscription(payload);
+        //
+        // if (response.data.status && response.data.status !== 200) {
+        //     if (response.data.error === "email-already-exist") {
+        //         showAlert("Cet email existe déjà", "error");
+        //     } else {
+        //         showAlert("Erreur lors de l'inscription", "error");
+        //     }
+        //     return;
+        // }
+
+        // const { token, user } = response.data;
+
+        // localStorage.setItem("token", token)
+        showAlert("Vous êtes bien inscrit", "success");
 
     }
     return(
-        <View style={styles.inscription}>
+        <ScrollView style={styles.inscription}>
             <Image source={banner} style={styles.banner} />
             <View style={styles.viewUtil}>
                 <View style={styles.title}>
@@ -55,8 +72,12 @@ const InscriptionTab = () => {
                         <SubmitButton text={"S'inscrire"} onPress={handleSubmit} />
                     </View>
                 </View>
+                <View style={styles.row}>
+                    <BodyText size={BodySize.small} text={"Vous avez un compte ?"} />
+                    <LinkButton text={"Connectez-vous"} onPress={props.onPress} />
+                </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({

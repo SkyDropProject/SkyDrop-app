@@ -82,9 +82,12 @@ interface DateInputProps {
     disabled?: boolean;
 }
 
-interface AlertProps {
-    message: string;
-    type: string;
+interface LoginTabProps {
+    onPress: () => void;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps, QuantityButtonProps, LikeButtonProps, QuantityComponentProps, ProductDetailProps, LinkButtonProps, DateInputProps, AlertProps }
+interface InscriptionTabProps {
+    onPress: () => void;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps, QuantityButtonProps, LikeButtonProps, QuantityComponentProps, ProductDetailProps, LinkButtonProps, DateInputProps, LoginTabProps, InscriptionTabProps };

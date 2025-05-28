@@ -1,7 +1,7 @@
 import { Redirect } from 'expo-router';
 
 const Index = () => {
-    const isSignedIn = true;
+    const isSignedIn = false;
     return <Redirect href={isSignedIn ? "/(root)/(tabs)/home" : "/(auth)/welcome"} />;
 };
 

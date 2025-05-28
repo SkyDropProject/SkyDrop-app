@@ -1,4 +1,4 @@
-interface UserType {
+interface User {
     _id?: string;
     email: string;
     password: string;
@@ -16,4 +16,4 @@ interface UserType {
     favoriteProductsId: Array<string>;
 }
 
-export { UserType };
+export { User };
