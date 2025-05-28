@@ -1,6 +1,5 @@
 import Icon from "@/app/utils/Icon";
 import {BodySize, TitleSize} from "@/app/utils/Typography";
-import QuantityComponent from "@/app/components/QuantityComponent";
 import {ProductType} from "@/app/interfaces/Product";
 
 interface inputProps{
@@ -9,7 +8,10 @@ interface inputProps{
     onChangeText: (text: string) => void;
     error?: string;
     disabled?: boolean;
+    small?: boolean;
     secureTextEntry? : boolean;
+    keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad';
+    mode?: 'text' | 'date';
 }
 
 interface SubmitButtonProps {
@@ -67,4 +69,22 @@ interface ProductDetailProps {
     product: ProductType;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps, QuantityButtonProps, LikeButtonProps, QuantityComponentProps, ProductDetailProps }
+interface LinkButtonProps {
+    text: string;
+    onPress?: () => void;
+}
+
+interface DateInputProps {
+    value: string;
+    onChange: (text: string) => void;
+    placeholder?: string;
+    error?: string;
+    disabled?: boolean;
+}
+
+interface AlertProps {
+    message: string;
+    type: string;
+}
+
+export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps, QuantityButtonProps, LikeButtonProps, QuantityComponentProps, ProductDetailProps, LinkButtonProps, DateInputProps, AlertProps }

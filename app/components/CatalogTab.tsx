@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         gap: 30,
-        marginBottom: 10
+        marginBottom: 30
     },
     ProductsList: {
         display: "flex",

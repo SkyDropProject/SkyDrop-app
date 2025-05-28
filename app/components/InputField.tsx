@@ -5,7 +5,11 @@ const { width } = Dimensions.get("window");
 const InputField = (props : inputProps) => {
     return (
         <View style={styles.InputField}>
-            <TextInput style={[styles.input, props.disabled && styles.disabledInput]} placeholder={props.placeholder} value={props.value} onChangeText={props.onChangeText} editable={!props.disabled} secureTextEntry={props.secureTextEntry} />
+            <TextInput  style={[
+                styles.input,
+                props.small && styles.inputSmall,
+                props.disabled && styles.disabledInput
+            ]} placeholder={props.placeholder} value={props.value} onChangeText={props.onChangeText} editable={!props.disabled} secureTextEntry={props.secureTextEntry} keyboardType={props.keyboardType} placeholderTextColor={"#8F9098"} />
             {props.error && <Text style={styles.errorText}>{props.error}</Text>}
         </View>
     )
@@ -25,6 +29,9 @@ const styles = StyleSheet.create({
         fontSize: 14,
         width: width * 0.75,
         height: 50,
+    },
+    inputSmall: {
+        width: width * 0.36,
     },
     disabledInput: {
         backgroundColor: '#F0F0F0',

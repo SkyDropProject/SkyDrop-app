@@ -4,7 +4,7 @@ const { width } = Dimensions.get("window");
 
 const SubmitButton = (props : SubmitButtonProps)  => {
     return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={props.onPress}>
             <Text style={styles.buttonText}>{props.text}</Text>
         </TouchableOpacity>
     );
