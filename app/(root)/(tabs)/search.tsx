@@ -1,14 +1,9 @@
-import React, {Component} from 'react';
-import {Text} from 'react-native';
+import CatalogTab from '@/app/components/CatalogTab';
 
-class Search extends Component {
-    render() {
-        return (
-            <Text>
-                Search
-            </Text>
-        );
-    }
+const Search = () => {
+    return (
+        <CatalogTab />
+    )
 }
 
 export default Search;

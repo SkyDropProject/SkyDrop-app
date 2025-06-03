@@ -1,32 +1,30 @@
-import {BodyProps} from "@/app/interfaces/component";
-import {StyleSheet,Text} from "react-native";
-const BodyText = (props : BodyProps) => {
-    return(
-        <Text style={styles[props.size]}>{props.text}</Text>
-    )
-}
+import { BodyProps } from '@/app/interfaces/component';
+import { StyleSheet, Text } from 'react-native';
+const BodyText = (props: BodyProps) => {
+    return <Text style={styles[props.size]}>{props.text}</Text>;
+};
 
 const styles = StyleSheet.create({
-    small:{
+    small: {
         fontFamily: 'Inter',
         fontWeight: 'light',
         fontSize: 12,
     },
-    medium:{
+    medium: {
         fontFamily: 'Inter',
         fontWeight: 'regular',
         fontSize: 16,
     },
-    large:{
+    large: {
         fontFamily: 'Inter',
         fontWeight: 'regular',
         fontSize: 18,
     },
-    xlarge:{
+    xlarge: {
         fontFamily: 'Inter',
         fontWeight: 'bold',
         fontSize: 16,
-    }
-})
+    },
+});
 
 export default BodyText;

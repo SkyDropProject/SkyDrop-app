@@ -1,15 +1,15 @@
-import Icon from "@/app/utils/Icon";
-import {BodySize, TitleSize} from "@/app/utils/Typography";
-import {ProductType} from "@/app/interfaces/Product";
+import Icon from '@/app/utils/Icon';
+import { BodySize, TitleSize } from '@/app/utils/Typography';
+import { ProductType } from '@/app/interfaces/Product';
 
-interface inputProps{
+interface inputProps {
     placeholder?: string;
     value: string;
     onChangeText: (text: string) => void;
     error?: string;
     disabled?: boolean;
     small?: boolean;
-    secureTextEntry? : boolean;
+    secureTextEntry?: boolean;
     keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad';
     mode?: 'text' | 'date';
 }
@@ -20,7 +20,7 @@ interface SubmitButtonProps {
 }
 
 interface CategoryButtonProps {
-    icon: typeof Icon[keyof typeof Icon];
+    icon: (typeof Icon)[keyof typeof Icon];
     text?: string;
 }
 
@@ -31,7 +31,7 @@ interface MenuBarProps {
 
 interface ProfileButtonProps {
     text: string;
-    icon: typeof Icon[keyof typeof Icon];
+    icon: (typeof Icon)[keyof typeof Icon];
     onPress?: () => void;
 }
 
@@ -51,7 +51,7 @@ interface BodyProps {
 }
 
 interface QuantityButtonProps {
-    icon: typeof Icon[keyof typeof Icon];
+    icon: (typeof Icon)[keyof typeof Icon];
     onPress: () => void;
 }
 
@@ -90,4 +90,21 @@ interface InscriptionTabProps {
     onPress: () => void;
 }
 
-export { inputProps, SubmitButtonProps, CategoryButtonProps, MenuBarProps, ProfileButtonProps,AccountProps, TitleProps, BodyProps, QuantityButtonProps, LikeButtonProps, QuantityComponentProps, ProductDetailProps, LinkButtonProps, DateInputProps, LoginTabProps, InscriptionTabProps };
+export {
+    inputProps,
+    SubmitButtonProps,
+    CategoryButtonProps,
+    MenuBarProps,
+    ProfileButtonProps,
+    AccountProps,
+    TitleProps,
+    BodyProps,
+    QuantityButtonProps,
+    LikeButtonProps,
+    QuantityComponentProps,
+    ProductDetailProps,
+    LinkButtonProps,
+    DateInputProps,
+    LoginTabProps,
+    InscriptionTabProps,
+};

@@ -1,12 +1,12 @@
-import Icon from "../utils/Icon";
-import {StyleSheet, View, Text, Dimensions} from "react-native";
-import {AccountProps} from "@/app/interfaces/component";
-import TitleText from "@/app/components/TitleText";
-import {TitleSize} from "@/app/utils/Typography";
-const { width } = Dimensions.get("window");
+import Icon from '../utils/Icon';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { AccountProps } from '@/app/interfaces/component';
+import TitleText from '@/app/components/TitleText';
+import { TitleSize } from '@/app/utils/Typography';
+const { width } = Dimensions.get('window');
 
 const Account = (props: AccountProps) => {
-    return(
+    return (
         <View style={styles.Account}>
             <Icon.profile style={styles.profile} />
             <View>
@@ -14,28 +14,27 @@ const Account = (props: AccountProps) => {
                 <Text>{props.email}</Text>
             </View>
         </View>
-
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
-    Account:{
-        display: "flex",
-        flexDirection: "row",
+    Account: {
+        display: 'flex',
+        flexDirection: 'row',
         gap: 30,
-        backgroundColor: "white",
+        backgroundColor: 'white',
         paddingHorizontal: 15,
         borderRadius: 12,
-        alignItems: "center",
+        alignItems: 'center',
         width: width * 0.85,
         height: 80,
     },
 
-    profile:{
+    profile: {
         width: 50,
         height: 50,
         borderRadius: 50,
-    }
-})
+    },
+});
 
 export default Account;

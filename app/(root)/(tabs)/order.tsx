@@ -1,13 +1,9 @@
-import React, {Component} from 'react';
-import {Text} from 'react-native';
+import React, { Component } from 'react';
+import { Text } from 'react-native';
 
 class Order extends Component {
     render() {
-        return (
-            <Text>
-                Order
-            </Text>
-        );
+        return <Text>Order</Text>;
     }
 }
 

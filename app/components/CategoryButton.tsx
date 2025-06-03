@@ -1,8 +1,8 @@
-import {CategoryButtonProps} from "@/app/interfaces/component";
-import {StyleSheet, TouchableOpacity, Text, View} from "react-native";
+import { CategoryButtonProps } from '@/app/interfaces/component';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
-const CategoryButton = (props : CategoryButtonProps) => {
-    return(
+const CategoryButton = (props: CategoryButtonProps) => {
+    return (
         <TouchableOpacity style={styles.button}>
             {props.icon && (
                 <View style={styles.iconContainer}>
@@ -11,11 +11,11 @@ const CategoryButton = (props : CategoryButtonProps) => {
             )}
             <Text style={styles.text}>{props.text}</Text>
         </TouchableOpacity>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
-    button : {
+    button: {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
@@ -29,8 +29,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         color: '#000',
-    }
-
-})
+    },
+});
 
 export default CategoryButton;

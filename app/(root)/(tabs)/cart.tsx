@@ -1,14 +1,8 @@
-import React, {Component} from 'react';
-import {Text} from 'react-native';
+import CartTab from "@/app/components/CartTab";
 
-class Cart extends Component {
-    render() {
-        return (
-            <Text>
-                Cart
-            </Text>
-        );
-    }
+
+const Cart = () => {
+    return (<CartTab />)
 }
 
 export default Cart;

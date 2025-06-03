@@ -1,14 +1,7 @@
-import React, {Component} from 'react';
-import {Text} from 'react-native';
+import ProfileTab from '@/app/components/ProfileTab';
 
-class Profile extends Component {
-    render() {
-        return (
-            <Text>
-                Profile
-            </Text>
-        );
-    }
+const Profile = () => {
+    return (<ProfileTab />);
 }
 
 export default Profile;

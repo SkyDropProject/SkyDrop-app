@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
-import { useAlert } from "@/app/components/AlertContext";
-import Icon from "@/app/utils/Icon";
+import { View, Text, StyleSheet } from 'react-native';
+import { useAlert } from '@/app/components/AlertContext';
+import Icon from '@/app/utils/Icon';
 
 const Alert = () => {
     const { alert } = useAlert();
@@ -9,7 +9,7 @@ const Alert = () => {
     if (!alert) return null;
 
     return (
-        <View style={[styles.container, styles[alert.type] ]}>
+        <View style={[styles.container, styles[alert.type]]}>
             <IconComponent width={20} height={20} />
             <Text>{alert.message}</Text>
         </View>
@@ -18,7 +18,7 @@ const Alert = () => {
 
 const styles = StyleSheet.create({
     container: {
-        position: "absolute",
+        position: 'absolute',
         top: 20,
         right: 20,
         borderRadius: 10,
@@ -28,25 +28,25 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         gap: 10,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: 'center',
         zIndex: 1000,
     },
-    error : {
-    backgroundColor: "#fdeded"
+    error: {
+        backgroundColor: '#fdeded',
     },
 
-    info : {
-    backgroundColor: "#e5f6fd",
+    info: {
+        backgroundColor: '#e5f6fd',
     },
 
-   success : {
-    backgroundColor: "#edf7ed",
+    success: {
+        backgroundColor: '#edf7ed',
     },
 
-  warning : {
-    backgroundColor: "#fff4e5",
-},
+    warning: {
+        backgroundColor: '#fff4e5',
+    },
 });
 
 export default Alert;

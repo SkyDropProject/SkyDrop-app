@@ -1,9 +1,9 @@
 interface lang {
-    [key : string] : string
+    [key: string]: string;
 }
 
 interface langs {
-    [key : string] : lang
+    [key: string]: lang;
 }
 
-export { lang, langs }
+export { lang, langs };

@@ -1,13 +1,9 @@
-import React, {Component} from 'react';
-import {Text} from 'react-native';
+import React, { Component } from 'react';
+import { Text } from 'react-native';
 
 class Home extends Component {
     render() {
-        return (
-            <Text>
-                Home
-            </Text>
-        );
+        return <Text>Home</Text>;
     }
 }
 

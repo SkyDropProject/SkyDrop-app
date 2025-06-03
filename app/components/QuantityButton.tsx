@@ -1,20 +1,20 @@
-import { StyleSheet, TouchableOpacity} from "react-native";
-import {QuantityButtonProps} from "@/app/interfaces/component";
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { QuantityButtonProps } from '@/app/interfaces/component';
 
-const QuantityButton = (props : QuantityButtonProps) => {
-    return(
+const QuantityButton = (props: QuantityButtonProps) => {
+    return (
         <TouchableOpacity style={styles.QuantityButton} onPress={props.onPress}>
             <props.icon width={10} height={10} />
         </TouchableOpacity>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     QuantityButton: {
         borderRadius: 50,
         padding: 10,
-        backgroundColor: "#EAF2FF"
-    }
-})
+        backgroundColor: '#EAF2FF',
+    },
+});
 
 export default QuantityButton;

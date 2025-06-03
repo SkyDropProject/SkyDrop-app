@@ -1,17 +1,37 @@
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
-import Icon from "@/app/utils/Icon";
-import { MenuBarProps } from "@/app/interfaces/component";
-import {useIntl} from "react-intl";
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import Icon from '@/app/utils/Icon';
+import { MenuBarProps } from '@/app/interfaces/component';
+import { useIntl } from 'react-intl';
 
 const MenuBar = (props: MenuBarProps) => {
-    const intl = useIntl()
+    const intl = useIntl();
 
     const tabs = [
-        { id: "home", label: intl.formatMessage({id:"homeMenu"}), icon: Icon.home, icon_selected: Icon.home_selected },
-        { id: "catalog", label: intl.formatMessage({id:"catalogMenu"}), icon: Icon.catalog, icon_selected: Icon.catalog_selected },
-        { id: "drone", label: "", icon: Icon.drone, icon_selected: Icon.drone_selected },
-        { id: "cart", label: intl.formatMessage({id:"cartMenu"}), icon: Icon.cart, icon_selected: Icon.cart_selected },
-        { id: "profile", label: intl.formatMessage({id:"profileMenu"}), icon: Icon.profile_menu, icon_selected: Icon.profile_selected },
+        {
+            id: 'home',
+            label: intl.formatMessage({ id: 'homeMenu' }),
+            icon: Icon.home,
+            icon_selected: Icon.home_selected,
+        },
+        {
+            id: 'catalog',
+            label: intl.formatMessage({ id: 'catalogMenu' }),
+            icon: Icon.catalog,
+            icon_selected: Icon.catalog_selected,
+        },
+        { id: 'drone', label: '', icon: Icon.drone, icon_selected: Icon.drone_selected },
+        {
+            id: 'cart',
+            label: intl.formatMessage({ id: 'cartMenu' }),
+            icon: Icon.cart,
+            icon_selected: Icon.cart_selected,
+        },
+        {
+            id: 'profile',
+            label: intl.formatMessage({ id: 'profileMenu' }),
+            icon: Icon.profile_menu,
+            icon_selected: Icon.profile_selected,
+        },
     ];
 
     return (
@@ -19,16 +39,21 @@ const MenuBar = (props: MenuBarProps) => {
             {tabs.map((tab) => (
                 <TouchableOpacity
                     key={tab.id}
-                    style={[
-                        styles.tab,
-                        tab.id === "drone" && styles.droneTab,
-                    ]}
+                    style={[styles.tab, tab.id === 'drone' && styles.droneTab]}
                     onPress={() => props.onTabPress(tab.id)}
                 >
-                    { props.activeTab === tab.id ? (tab.id === "drone" ? <tab.icon_selected width={27} height={27} /> : <tab.icon_selected width={24} height={24} /> ) :
-                        (tab.id === "drone" ? <tab.icon width={27} height={27} /> : <tab.icon width={24} height={24} /> ) }
-                    <Text style={[styles.text,
-                        props.activeTab === tab.id && styles.activeText]}>
+                    {props.activeTab === tab.id ? (
+                        tab.id === 'drone' ? (
+                            <tab.icon_selected width={27} height={27} />
+                        ) : (
+                            <tab.icon_selected width={24} height={24} />
+                        )
+                    ) : tab.id === 'drone' ? (
+                        <tab.icon width={27} height={27} />
+                    ) : (
+                        <tab.icon width={24} height={24} />
+                    )}
+                    <Text style={[styles.text, props.activeTab === tab.id && styles.activeText]}>
                         {tab.label}
                     </Text>
                 </TouchableOpacity>
@@ -39,24 +64,24 @@ const MenuBar = (props: MenuBarProps) => {
 
 const styles = StyleSheet.create({
     menuBar: {
-        position: "absolute",
+        position: 'absolute',
         bottom: 0,
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
-        backgroundColor: "#fff",
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: '#fff',
         paddingVertical: 5,
-        borderWidth: 0
+        borderWidth: 0,
     },
     tab: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     text: {
-        color: "#007BFF",
-        fontWeight: "bold",
+        color: '#007BFF',
+        fontWeight: 'bold',
         fontSize: 12,
         marginTop: 5,
         opacity: 0,
@@ -64,17 +89,16 @@ const styles = StyleSheet.create({
     activeText: {
         opacity: 1,
     },
-    droneTab : {
-        position: "relative",
+    droneTab: {
+        position: 'relative',
         bottom: 25,
-        backgroundColor: "#613EEA",
+        backgroundColor: '#613EEA',
         borderRadius: '50%',
         padding: 30,
-        width:27,
-        height:27,
-        boxShadow: "0px 0px 10px #613EEA",
-    }
-
+        width: 27,
+        height: 27,
+        boxShadow: '0px 0px 10px #613EEA',
+    },
 });
 
 export default MenuBar;
