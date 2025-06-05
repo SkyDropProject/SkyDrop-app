@@ -1,16 +1,17 @@
+import { ReactElement, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useEffect, useState } from 'react';
-import { ProductType } from '@/app/interfaces/Product';
-import ProductCard from '@/app/components/ProductCard';
-import { TitleSize } from '@/app/utils/Typography';
-import TitleText from '@/app/components/TitleText';
-import CategoryButton from '@/app/components/CategoryButton';
-import Icon from '@/app/utils/Icon';
 
-const CatalogTab = () => {
+import CategoryButton from '@/app/components/CategoryButton';
+import ProductCard from '@/app/components/ProductCard';
+import TitleText from '@/app/components/TitleText';
+import { ProductType } from '@/app/interfaces/Product';
+import Icon from '@/app/utils/Icon';
+import { TitleSize } from '@/app/utils/Typography';
+
+const CatalogTab = (): ReactElement => {
     const [products, setProducts] = useState<ProductType[]>([]);
 
-    const initProducts = () => {
+    const initProducts = (): void => {
         //route all products
 
         const product: ProductType = {

@@ -1,8 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { ReactElement } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
 import { useAlert } from '@/app/components/AlertContext';
 import Icon from '@/app/utils/Icon';
 
-const Alert = () => {
+const Alert = (): ReactElement | null => {
     const { alert } = useAlert();
     // @ts-ignore
     const IconComponent = Icon[alert?.type];

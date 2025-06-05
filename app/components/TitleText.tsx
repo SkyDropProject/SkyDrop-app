@@ -1,7 +1,9 @@
-import { TitleProps } from '@/app/interfaces/component';
+import { ReactElement } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-const TitleText = (props: TitleProps) => {
+import { TitleProps } from '@/app/interfaces/component';
+
+const TitleText = (props: TitleProps): ReactElement => {
     return <Text style={styles[props.size]}>{props.text}</Text>;
 };
 

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { ReactElement, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-type ExpansionPanelProps = {
+interface ExpansionPanelProps {
     title: string;
     children: React.ReactNode;
-};
+}
 
-const ExpansionPanel = ({ title, children }: ExpansionPanelProps) => {
+const ExpansionPanel = ({ title, children }: ExpansionPanelProps): ReactElement => {
     const [expanded, setExpanded] = useState(false);
 
     return (

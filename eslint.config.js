@@ -5,7 +5,7 @@ const expoConfig = require('eslint-config-expo/flat');
 module.exports = defineConfig([
     expoConfig,
     {
-        ignores: ['dist/*'],
+        ignores: ['dist/*', 'babel.config.js', 'metro.config.js'],
         plugins: {
             'react-native': require('eslint-plugin-react-native'),
             '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),

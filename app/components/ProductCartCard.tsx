@@ -1,12 +1,14 @@
-import { ProductType } from '@/app/interfaces/Product';
+import { ReactElement, useEffect, useState } from 'react';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
+
+import { ProductType } from '@/app/interfaces/Product';
 import BodyText from '@/app/components/BodyText';
 import { BodySize } from '@/app/utils/Typography';
-import { useEffect, useState } from 'react';
 import QuantityComponent from '@/app/components/QuantityComponent';
+
 const { width } = Dimensions.get('window');
 
-const ProductCartCard = ({ product }: { product: ProductType }) => {
+const ProductCartCard = ({ product }: { product: ProductType }): ReactElement => {
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState(1);
     useEffect(() => {

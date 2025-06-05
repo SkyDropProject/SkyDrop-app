@@ -7,7 +7,6 @@ const fr: lang = {
     order: 'Commande',
     cart: 'Panier',
     profile: 'Profile',
-    test: 'Le test',
     homeMenu: 'Accueil',
     catalogMenu: 'Catalogue',
     cartMenu: 'Panier',

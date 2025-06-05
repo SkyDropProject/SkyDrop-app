@@ -1,15 +1,15 @@
-import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import LikeButton from '@/app/components/LikeButton';
-import { useState } from 'react';
-import { ProductType } from '@/app/interfaces/Product';
-import BodyText from '@/app/components/BodyText';
-import { BodySize } from '@/app/utils/Typography';
-import ProductDetail from '@/app/components/ProductDetail';
+import { ReactElement, useState } from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const ProductCard = ({ product }: { product: ProductType }) => {
+import BodyText from '@/app/components/BodyText';
+import LikeButton from '@/app/components/LikeButton';
+import { ProductType } from '@/app/interfaces/Product';
+import { BodySize } from '@/app/utils/Typography';
+
+const ProductCard = ({ product }: { product: ProductType }): ReactElement => {
     const [isLiked, setIsLiked] = useState(false);
 
-    const toggleLike = () => {
+    const toggleLike = (): void => {
         setIsLiked(!isLiked);
     };
 

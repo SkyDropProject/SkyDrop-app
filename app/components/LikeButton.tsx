@@ -1,8 +1,11 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { ReactElement } from 'react';
+import { TouchableOpacity } from 'react-native';
+
 import { LikeButtonProps } from '@/app/interfaces/component';
+
 import Icon from '../utils/Icon';
 
-const LikeButton = (props: LikeButtonProps) => {
+const LikeButton = (props: LikeButtonProps): ReactElement => {
     return (
         <TouchableOpacity onPress={props.onPress}>
             {props.isLiked ? (
@@ -13,5 +16,4 @@ const LikeButton = (props: LikeButtonProps) => {
         </TouchableOpacity>
     );
 };
-const styles = StyleSheet.create({});
 export default LikeButton;

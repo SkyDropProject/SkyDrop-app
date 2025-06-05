@@ -1,9 +1,11 @@
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
-import Icon from '@/app/utils/Icon';
-import { MenuBarProps } from '@/app/interfaces/component';
+import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const MenuBar = (props: MenuBarProps) => {
+import { MenuBarProps } from '@/app/interfaces/component';
+import Icon from '@/app/utils/Icon';
+
+const MenuBar = (props: MenuBarProps): ReactElement => {
     const intl = useIntl();
 
     const tabs = [

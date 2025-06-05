@@ -1,26 +1,27 @@
-import { Image, StyleSheet, View, Dimensions } from 'react-native';
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
 // @ts-ignore
-import banner from '@/assets/images/banner.png';
-import TitleText from '@/app/components/TitleText';
-import { BodySize, TitleSize } from '@/app/utils/Typography';
+import { ReactElement, useState } from 'react';
+import { useIntl } from 'react-intl';
+
+import { useAlert } from '@/app/components/AlertContext';
+import BodyText from '@/app/components/BodyText';
 import InputField from '@/app/components/InputField';
-import { useState } from 'react';
 import LinkButton from '@/app/components/LinkButton';
 import SubmitButton from '@/app/components/SubmitButton';
-import { useIntl } from 'react-intl';
-import BodyText from '@/app/components/BodyText';
-import { useAlert } from '@/app/components/AlertContext';
+import TitleText from '@/app/components/TitleText';
 import { LoginTabProps } from '@/app/interfaces/component';
+import { BodySize, TitleSize } from '@/app/utils/Typography';
+import banner from '@/assets/images/banner.png';
 const { width, height } = Dimensions.get('window');
 
-const LoginTab = (props: LoginTabProps) => {
+const LoginTab = (props: LoginTabProps): ReactElement => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const intl = useIntl();
 
     const { showAlert } = useAlert();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (): Promise<void> => {
         const payload = {
             email,
             password,

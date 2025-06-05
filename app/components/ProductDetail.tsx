@@ -1,14 +1,16 @@
+import { ReactElement, useState } from 'react';
 import { Dimensions, StyleSheet, View, Image } from 'react-native';
+
 import { ProductDetailProps } from '@/app/interfaces/component';
 import BodyText from '@/app/components/BodyText';
 import { BodySize } from '@/app/utils/Typography';
 import QuantityComponent from '@/app/components/QuantityComponent';
-import { useState } from 'react';
 import ExpansionPanel from '@/app/components/ExpansionPanel';
+
 import Icon from '../utils/Icon';
 const { width, height } = Dimensions.get('window');
 
-const ProductDetail = (props: ProductDetailProps) => {
+const ProductDetail = (props: ProductDetailProps): ReactElement => {
     const [quantity, setQuantity] = useState(1);
     return (
         <View style={styles.ProductDetail}>

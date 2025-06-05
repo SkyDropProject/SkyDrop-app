@@ -1,19 +1,21 @@
 import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
 // @ts-ignore
-import banner from '@/assets/images/banner.png';
-import TitleText from '@/app/components/TitleText';
-import { BodySize, TitleSize } from '@/app/utils/Typography';
-import InputField from '@/app/components/InputField';
-import { useState } from 'react';
-import SubmitButton from '@/app/components/SubmitButton';
-import DateInput from '@/app/components/DateInput';
+import { ReactElement, useState } from 'react';
+
 import { useAlert } from '@/app/components/AlertContext';
-import { InscriptionTabProps } from '@/app/interfaces/component';
-import LinkButton from '@/app/components/LinkButton';
 import BodyText from '@/app/components/BodyText';
+import DateInput from '@/app/components/DateInput';
+import InputField from '@/app/components/InputField';
+import LinkButton from '@/app/components/LinkButton';
+import SubmitButton from '@/app/components/SubmitButton';
+import TitleText from '@/app/components/TitleText';
+import { InscriptionTabProps } from '@/app/interfaces/component';
+import { BodySize, TitleSize } from '@/app/utils/Typography';
+import banner from '@/assets/images/banner.png';
+
 const { width, height } = Dimensions.get('window');
 
-const InscriptionTab = (props: InscriptionTabProps) => {
+const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -24,7 +26,7 @@ const InscriptionTab = (props: InscriptionTabProps) => {
 
     const { showAlert } = useAlert();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (): Promise<void> => {
         const payload = {
             email: email,
             password: password,

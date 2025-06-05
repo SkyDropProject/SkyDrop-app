@@ -1,7 +1,9 @@
-import { CategoryButtonProps } from '@/app/interfaces/component';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { ReactElement } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const CategoryButton = (props: CategoryButtonProps) => {
+import { CategoryButtonProps } from '@/app/interfaces/component';
+
+const CategoryButton = (props: CategoryButtonProps): ReactElement => {
     return (
         <TouchableOpacity style={styles.button}>
             {props.icon && (

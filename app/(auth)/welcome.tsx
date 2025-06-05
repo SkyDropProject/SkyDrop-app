@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react';
-import { Text, View } from 'react-native';
-import LoginTab from '@/app/components/LoginTab';
-import InscriptionTab from '@/app/components/InscriptionTab';
+import React, { ReactElement, useState } from 'react';
 
-const Welcome = () => {
+import InscriptionTab from '@/app/components/InscriptionTab';
+import LoginTab from '@/app/components/LoginTab';
+
+const Welcome = (): ReactElement => {
     const [isInscription, setIsInscription] = useState<boolean>(false);
     return isInscription ? (
         <InscriptionTab onPress={() => setIsInscription(false)} />

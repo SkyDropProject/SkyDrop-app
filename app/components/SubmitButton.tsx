@@ -1,8 +1,10 @@
+import { ReactElement } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
+
 import { SubmitButtonProps } from '@/app/interfaces/component';
 const { width } = Dimensions.get('window');
 
-const SubmitButton = (props: SubmitButtonProps) => {
+const SubmitButton = (props: SubmitButtonProps): ReactElement => {
     return (
         <TouchableOpacity style={styles.button} onPress={props.onPress}>
             <Text style={styles.buttonText}>{props.text}</Text>

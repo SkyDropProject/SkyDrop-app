@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import { Text } from 'react-native';
 
 class Order extends Component {
-    render() {
+    render(): ReactElement {
         return <Text>Order</Text>;
     }
 }

@@ -13,7 +13,7 @@ interface User {
     accountType: string;
     token?: string;
     stripeId?: string;
-    favoriteProductsId: Array<string>;
+    favoriteProductsId: string[];
 }
 
 export { User };

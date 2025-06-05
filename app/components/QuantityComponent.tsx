@@ -1,16 +1,18 @@
+import { ReactElement } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import BodyText from '@/app/components/BodyText';
 import QuantityButton from '@/app/components/QuantityButton';
+import { QuantityComponentProps } from '@/app/interfaces/component';
 import Icon from '@/app/utils/Icon';
 import { BodySize } from '@/app/utils/Typography';
-import BodyText from '@/app/components/BodyText';
-import { QuantityComponentProps } from '@/app/interfaces/component';
 
-const QuantityComponent = (props: QuantityComponentProps) => {
-    const addQuantity = () => {
+const QuantityComponent = (props: QuantityComponentProps): ReactElement => {
+    const addQuantity = (): void => {
         props.setQuantity(props.quantity + 1);
     };
 
-    const removeQuantity = () => {
+    const removeQuantity = (): void => {
         if (props.quantity === 1) return;
         props.setQuantity(props.quantity - 1);
     };

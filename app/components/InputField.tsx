@@ -1,8 +1,10 @@
-import { TextInput, StyleSheet, Text, Dimensions, View } from 'react-native';
+import { ReactElement } from 'react';
+import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
+
 import { inputProps } from '@/app/interfaces/component';
 const { width } = Dimensions.get('window');
 
-const InputField = (props: inputProps) => {
+const InputField = (props: inputProps): ReactElement => {
     return (
         <View style={styles.InputField}>
             <TextInput

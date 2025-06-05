@@ -1,11 +1,14 @@
-import Icon from '../utils/Icon';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
-import { AccountProps } from '@/app/interfaces/component';
+import { ReactElement } from 'react';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+
 import TitleText from '@/app/components/TitleText';
+import { AccountProps } from '@/app/interfaces/component';
 import { TitleSize } from '@/app/utils/Typography';
+
+import Icon from '../utils/Icon';
 const { width } = Dimensions.get('window');
 
-const Account = (props: AccountProps) => {
+const Account = (props: AccountProps): ReactElement => {
     return (
         <View style={styles.Account}>
             <Icon.profile style={styles.profile} />

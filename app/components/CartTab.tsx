@@ -1,16 +1,17 @@
-import { View, StyleSheet } from 'react-native';
-import { ProductType } from '@/app/interfaces/Product';
-import ProductCartCard from '@/app/components/ProductCartCard';
-import { useEffect, useState } from 'react';
-import TitleText from '@/app/components/TitleText';
-import { TitleSize } from '@/app/utils/Typography';
+import { ReactElement, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { StyleSheet, View } from 'react-native';
 
-const CartTab = () => {
+import ProductCartCard from '@/app/components/ProductCartCard';
+import TitleText from '@/app/components/TitleText';
+import { ProductType } from '@/app/interfaces/Product';
+import { TitleSize } from '@/app/utils/Typography';
+
+const CartTab = (): ReactElement => {
     const [products, setProducts] = useState<ProductType[]>([]);
     const intl = useIntl();
 
-    const initProducts = () => {
+    const initProducts = (): void => {
         // init Products ici (à adapter un peu vu que ce sera un panier et pas des produits)
         const product: ProductType = {
             name: 'Coca-Cola 33cl',

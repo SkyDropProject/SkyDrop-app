@@ -1,11 +1,14 @@
 // app/_layout.tsx
 import { Stack } from 'expo-router';
-import './globals.css';
-import { AppProviders } from './providers';
-import { AlertProvider } from '@/app/components/AlertContext';
+import { ReactElement } from 'react';
 import { Alert } from 'react-native';
+import './globals.css';
 
-export default function RootLayout() {
+import { AlertProvider } from '@/app/components/AlertContext';
+
+import { AppProviders } from './providers';
+
+export default function RootLayout(): ReactElement {
     return (
         <AlertProvider>
             <AppProviders>

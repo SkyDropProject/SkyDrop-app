@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import { Text } from 'react-native';
 
 class Home extends Component {
-    render() {
+    render(): ReactElement {
         return <Text>Home</Text>;
     }
 }

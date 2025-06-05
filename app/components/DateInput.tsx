@@ -1,23 +1,25 @@
-import { View, TextInput, TouchableOpacity, StyleSheet, Dimensions, Text } from 'react-native';
+import { ReactElement, useState } from 'react';
+import { Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { useState } from 'react';
-import Icon from '@/app/utils/Icon';
+
 import { DateInputProps } from '@/app/interfaces/component';
+import Icon from '@/app/utils/Icon';
+
 const { width } = Dimensions.get('window');
 
-const DateInput = (props: DateInputProps) => {
+const DateInput = (props: DateInputProps): ReactElement => {
     const [isPickerVisible, setPickerVisible] = useState(false);
 
-    const showPicker = () => setPickerVisible(true);
-    const hidePicker = () => setPickerVisible(false);
+    const showPicker = (): void => setPickerVisible(true);
+    const hidePicker = (): void => setPickerVisible(false);
 
-    const handleConfirm = (date: Date) => {
+    const handleConfirm = (date: Date): void => {
         const formatted = date.toLocaleDateString('fr-FR');
         props.onChange(formatted);
         hidePicker();
     };
 
-    const handleInputChange = (text: string) => {
+    const handleInputChange = (text: string): void => {
         let cleaned = text.replace(/\D/g, '');
         if (cleaned.length > 2) cleaned = cleaned.slice(0, 2) + '/' + cleaned.slice(2);
         if (cleaned.length > 5) cleaned = cleaned.slice(0, 5) + '/' + cleaned.slice(5, 9);

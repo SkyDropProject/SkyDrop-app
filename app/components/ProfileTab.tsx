@@ -1,14 +1,15 @@
-import { View, StyleSheet } from 'react-native';
-import IconButton from '@/app/components/IconButton';
-import Icon from '@/app/utils/Icon';
-import Account from '@/app/components/Account';
+import { ReactElement, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import TitleText from '@/app/components/TitleText';
-import { TitleSize } from '@/app/utils/Typography';
-import { useEffect, useState } from 'react';
-import { UserType } from '@/app/interfaces/User';
+import { StyleSheet, View } from 'react-native';
 
-const ProfileTab = () => {
+import Account from '@/app/components/Account';
+import IconButton from '@/app/components/IconButton';
+import TitleText from '@/app/components/TitleText';
+import { UserType } from '@/app/interfaces/User';
+import Icon from '@/app/utils/Icon';
+import { TitleSize } from '@/app/utils/Typography';
+
+const ProfileTab = (): ReactElement => {
     const intl = useIntl();
     const [user, setUser] = useState<UserType>({
         _id: '',
@@ -27,7 +28,7 @@ const ProfileTab = () => {
         lastName: '',
         email: '',
     });
-    const initUser = () => {
+    const initUser = (): void => {
         // init User ici
         const user: UserType = {
             firstName: 'Ian',

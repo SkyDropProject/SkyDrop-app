@@ -1,4 +1,5 @@
 import { Tabs } from 'expo-router';
+import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import { Text, View } from 'react-native';
 
@@ -14,7 +15,7 @@ const TabIcon = ({
     focused: boolean;
     isMain?: boolean;
     label: string;
-}) => (
+}): ReactElement => (
     <View
         className="items-center justify-center min-w-14"
         style={{
@@ -44,7 +45,7 @@ const TabIcon = ({
     </View>
 );
 
-export default function Layout() {
+export default function Layout(): ReactElement {
     const intl = useIntl();
     return (
         <Tabs

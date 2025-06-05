@@ -1,9 +1,11 @@
-import { ProfileButtonProps } from '@/app/interfaces/component';
-import { TouchableOpacity, Text, StyleSheet, Dimensions, View } from 'react-native';
-const { width } = Dimensions.get('window');
-import Icon from '@/app/utils/Icon';
+import { ReactElement } from 'react';
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const IconButton = (props: ProfileButtonProps) => {
+import { ProfileButtonProps } from '@/app/interfaces/component';
+import Icon from '@/app/utils/Icon';
+const { width } = Dimensions.get('window');
+
+const IconButton = (props: ProfileButtonProps): ReactElement => {
     return (
         <TouchableOpacity style={styles.button} onPress={props.onPress}>
             <View style={styles.content}>

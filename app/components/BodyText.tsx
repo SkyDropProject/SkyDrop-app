@@ -1,6 +1,8 @@
-import { BodyProps } from '@/app/interfaces/component';
+import { ReactElement } from 'react';
 import { StyleSheet, Text } from 'react-native';
-const BodyText = (props: BodyProps) => {
+
+import { BodyProps } from '@/app/interfaces/component';
+const BodyText = (props: BodyProps): ReactElement => {
     return <Text style={styles[props.size]}>{props.text}</Text>;
 };
 
