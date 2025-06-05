@@ -1,17 +1,8 @@
 import { Tabs } from 'expo-router';
-import { View, Text } from 'react-native';
-
-import HomeIcon from '@/assets/icons/navbar/home.svg';
-import HoverHomeIcon from '@/assets/icons/navbar/hover_home.svg';
-import SearchIcon from '@/assets/icons/navbar/search.svg';
-import HoverSearchIcon from '@/assets/icons/navbar/hover_search.svg';
-import CartIcon from '@/assets/icons/navbar/cart.svg';
-import HoverCartIcon from '@/assets/icons/navbar/hover_cart.svg';
-import ProfileIcon from '@/assets/icons/navbar/profile.svg';
-import HoverProfileIcon from '@/assets/icons/navbar/hover_profile.svg';
-import OrderIcon from '@/assets/icons/navbar/order.svg';
-import HoverOrderIcon from '@/assets/icons/navbar/hover_order.svg';
 import { useIntl } from 'react-intl';
+import { Text, View } from 'react-native';
+
+import Icon from '@/app/utils/Icon';
 
 const TabIcon = ({
     Icon,
@@ -74,7 +65,7 @@ export default function Layout() {
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <TabIcon
-                            Icon={focused ? HoverHomeIcon : HomeIcon}
+                            Icon={focused ? Icon.hover_home : Icon.home}
                             focused={focused}
                             label={intl.formatMessage({ id: 'home' })}
                         />
@@ -88,7 +79,7 @@ export default function Layout() {
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <TabIcon
-                            Icon={focused ? HoverSearchIcon : SearchIcon}
+                            Icon={focused ? Icon.hover_catalog : Icon.catalog}
                             focused={focused}
                             label="Search"
                         />
@@ -102,7 +93,7 @@ export default function Layout() {
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <TabIcon
-                            Icon={focused ? HoverOrderIcon : OrderIcon}
+                            Icon={focused ? Icon.hover_drone_nav : Icon.drone_nav}
                             focused={focused}
                             isMain
                             label="Order"
@@ -117,7 +108,7 @@ export default function Layout() {
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <TabIcon
-                            Icon={focused ? HoverCartIcon : CartIcon}
+                            Icon={focused ? Icon.hover_cart : Icon.cart}
                             focused={focused}
                             label="Cart"
                         />
@@ -131,7 +122,7 @@ export default function Layout() {
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <TabIcon
-                            Icon={focused ? HoverProfileIcon : ProfileIcon}
+                            Icon={focused ? Icon.hover_profile : Icon.profile}
                             focused={focused}
                             label="Profile"
                         />

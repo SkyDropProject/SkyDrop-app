@@ -17,8 +17,6 @@ module.exports = defineConfig([
             '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
             'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
             'react/react-in-jsx-scope': 'off',
-            'react-native/no-inline-styles': 'warn',
-            'react-native/no-color-literals': 'warn',
             'import/order': [
                 'warn',
                 {
