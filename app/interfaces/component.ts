@@ -88,6 +88,7 @@ interface LoginTabProps {
 
 interface InscriptionTabProps {
     onPress: () => void;
+    onRegisterSubmit: () => void;
 }
 
 export {
