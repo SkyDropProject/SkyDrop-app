@@ -37,10 +37,10 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
         }
 
         if (response.status === 401) {
-            showAlert("Vos informations ne sont pas valides", "error");
+            showAlert('Vos informations ne sont pas valides', 'error');
             return;
         }
-        showAlert("Une erreur s'est produite", "warning");
+        showAlert("Une erreur s'est produite", 'warning');
     };
     return (
         <View style={styles.login}>

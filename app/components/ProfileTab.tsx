@@ -70,7 +70,13 @@ const ProfileTab = (): ReactElement => {
                     icon={Icon.megaphone}
                 />
                 <IconButton text={intl.formatMessage({ id: 'privacy_policy' })} icon={Icon.lock} />
-                <IconButton text={intl.formatMessage({ id: 'logout' })} icon={Icon.logout} onPress={() => { void signOut(); }} />
+                <IconButton
+                    text={intl.formatMessage({ id: 'logout' })}
+                    icon={Icon.logout}
+                    onPress={() => {
+                        void signOut();
+                    }}
+                />
             </View>
         </View>
     );

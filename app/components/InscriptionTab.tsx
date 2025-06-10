@@ -42,10 +42,10 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
         const response = await axios.put('/user/', payload);
 
         if (response.status && response.status !== 200) {
-            if (response.data.error && response.data.error === "email-already-exist") {
-                showAlert("Cet email existe déjà", "error");
+            if (response.data.error && response.data.error === 'email-already-exist') {
+                showAlert('Cet email existe déjà', 'error');
             } else {
-                showAlert("Erreur lors de l'inscription", "error");
+                showAlert("Erreur lors de l'inscription", 'error');
             }
             return;
         }

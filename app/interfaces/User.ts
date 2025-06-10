@@ -3,8 +3,8 @@ interface UserCoreData {
     password: string;
     firstName: string;
     lastName: string;
-    birthdate: number,
-    phone: string,
+    birthdate: number;
+    phone: string;
 }
 
 interface InscriptionUserPayload extends UserCoreData {
@@ -28,9 +28,4 @@ interface LoginPayload {
     password: string;
 }
 
-export {
-    InscriptionUserPayload,
-    User,
-    LoginPayload,
-};
-
+export { InscriptionUserPayload, User, LoginPayload };

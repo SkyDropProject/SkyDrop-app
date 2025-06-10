@@ -110,4 +110,3 @@ export {
     LoginTabProps,
     InscriptionTabProps,
 };
-

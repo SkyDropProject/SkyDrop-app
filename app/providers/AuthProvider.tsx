@@ -1,6 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import React, { createContext, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
+import React, {
+    createContext,
+    ReactElement,
+    ReactNode,
+    useContext,
+    useEffect,
+    useState,
+} from 'react';
 
 interface AuthContextType {
     isSignedIn: boolean;
@@ -10,11 +17,11 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }): ReactElement|null => {
+export const AuthProvider = ({ children }: { children: ReactNode }): ReactElement | null => {
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    useEffect(():void => {
+    useEffect((): void => {
         const checkToken = async (): Promise<void> => {
             const token = await AsyncStorage.getItem('token');
             setIsSignedIn(!!token);

@@ -19,9 +19,7 @@ export const AppProviders = ({ children }: { children: ReactNode }): ReactElemen
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>
-            <AuthProvider>
-                {children}
-            </AuthProvider>
+            <AuthProvider>{children}</AuthProvider>
         </IntlProvider>
     );
 };

@@ -8,9 +8,9 @@ const Index = (): ReactElement => {
 
     const [isLog, setIsLog] = useState<boolean>(false);
 
-    useEffect(
-        () => setIsLog(isSignedIn)
-    ,[isSignedIn]);
+    useEffect(() => {
+        setIsLog(isSignedIn);
+    }, [isSignedIn]);
 
     return <Redirect href={isLog ? '/(root)/(tabs)/home' : '/(auth)/welcome'} />;
 };
