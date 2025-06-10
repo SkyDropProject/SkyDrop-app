@@ -1,19 +1,31 @@
-interface User {
-    _id?: string;
+interface UserCoreData {
     email: string;
     password: string;
     firstName: string;
+    lastName: string;
+    birthdate: number;
+    phone: string;
+}
+
+interface InscriptionUserPayload extends UserCoreData {
+    confirmPassword: string;
+}
+interface User extends UserCoreData {
+    _id?: string;
     registrationDate: Date;
     verificationDate?: Date;
-    lastName: string;
     address: string;
     zip: string;
     city: string;
-    phone: string;
     accountType: string;
     token?: string;
     stripeId?: string;
     favoriteProductsId: string[];
 }
 
-export { User };
+interface LoginPayload {
+    email: string;
+    password: string;
+}
+
+export { InscriptionUserPayload, User, LoginPayload };

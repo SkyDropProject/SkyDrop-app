@@ -1,7 +1,7 @@
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
-// @ts-ignore
+import axios from 'axios';
 import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
 
 import { useAlert } from '@/app/components/AlertContext';
 import BodyText from '@/app/components/BodyText';
@@ -12,6 +12,8 @@ import TitleText from '@/app/components/TitleText';
 import { LoginTabProps } from '@/app/interfaces/component';
 import { BodySize, TitleSize } from '@/app/utils/Typography';
 import banner from '@/assets/images/banner.png';
+
+import { LoginPayload } from '../interfaces/User';
 const { width, height } = Dimensions.get('window');
 
 const LoginTab = (props: LoginTabProps): ReactElement => {
@@ -22,21 +24,23 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
     const { showAlert } = useAlert();
 
     const handleSubmit = async (): Promise<void> => {
-        const payload = {
-            email,
-            password,
+        const payload: LoginPayload = {
+            email: email,
+            password: password,
         };
-        // const response = await login(payload);
-        // if(response.status !== 200){
-        //     if(response.status === 401){
-        //         showAlert("Vos informations ne sont pas valides", "error");
-        //     }else{
-        //         showAlert("Une erreur s'est produite", "warning");
-        //     }
-        // }else{
-        //     const {token,user} = response.data;
-        //     localStorage.setItem("token", token);
-        // }
+        const response = await axios.post('/user/login', payload);
+
+        if (response.status === 200) {
+            const { token, user } = response.data;
+            props.onSubmit(token);
+            return;
+        }
+
+        if (response.status === 401) {
+            showAlert('Vos informations ne sont pas valides', 'error');
+            return;
+        }
+        showAlert("Une erreur s'est produite", 'warning');
     };
     return (
         <View style={styles.login}>

@@ -1,6 +1,6 @@
-import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
-// @ts-ignore
+import axios from 'axios';
 import { ReactElement, useState } from 'react';
+import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
 
 import { useAlert } from '@/app/components/AlertContext';
 import BodyText from '@/app/components/BodyText';
@@ -13,13 +13,15 @@ import { InscriptionTabProps } from '@/app/interfaces/component';
 import { BodySize, TitleSize } from '@/app/utils/Typography';
 import banner from '@/assets/images/banner.png';
 
+import { InscriptionUserPayload } from '../interfaces/User';
+
 const { width, height } = Dimensions.get('window');
 
 const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(new Date());
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phone, setPhone] = useState('');
@@ -27,30 +29,29 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
     const { showAlert } = useAlert();
 
     const handleSubmit = async (): Promise<void> => {
-        const payload = {
+        const payload: InscriptionUserPayload = {
             email: email,
             password: password,
             confirmPassword: confirmPassword,
             firstName: firstName,
             lastName: lastName,
-            birthdate: date,
+            birthdate: date.getTime(),
             phone: phone,
         };
-        // const response = await inscription(payload);
-        //
-        // if (response.data.status && response.data.status !== 200) {
-        //     if (response.data.error === "email-already-exist") {
-        //         showAlert("Cet email existe déjà", "error");
-        //     } else {
-        //         showAlert("Erreur lors de l'inscription", "error");
-        //     }
-        //     return;
-        // }
 
-        // const { token, user } = response.data;
+        const response = await axios.put('/user/', payload);
 
-        // localStorage.setItem("token", token)
-        showAlert('Vous êtes bien inscrit', 'success');
+        if (response.status && response.status !== 200) {
+            if (response.data.error && response.data.error === 'email-already-exist') {
+                showAlert('Cet email existe déjà', 'error');
+            } else {
+                showAlert("Erreur lors de l'inscription", 'error');
+            }
+            return;
+        }
+
+        props.onSubmit();
+        showAlert('Vous êtes bien inscrit. Vous pouvez désormais vous connecter.', 'success'); //TODO: don't work actually
     };
     return (
         <ScrollView style={styles.inscription}>
@@ -80,7 +81,16 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
                         onChangeText={setEmail}
                         keyboardType={'email-address'}
                     />
-                    <DateInput placeholder={'Date de naissance'} value={date} onChange={setDate} />
+                    <DateInput
+                        placeholder={'Date de naissance'}
+                        value={date.getTime().toString()}
+                        onChange={(text: string) => {
+                            const newDate = new Date(text);
+                            if (!isNaN(newDate.getTime())) {
+                                setDate(newDate);
+                            }
+                        }}
+                    />
                     <InputField
                         value={phone}
                         onChangeText={setPhone}
