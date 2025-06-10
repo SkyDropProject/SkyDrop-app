@@ -84,7 +84,7 @@ interface DateInputProps {
 
 interface LoginTabProps {
     onPress: () => void;
-    onSubmit: () => void;
+    onSubmit: (token: string) => void;
 }
 
 interface InscriptionTabProps {

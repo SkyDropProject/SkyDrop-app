@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
@@ -28,21 +28,11 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
             email: email,
             password: password,
         };
-
-        const response = await fetch('http://localhost:3001/user/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-        });
-
-        const data = await response.json();
+        const response = await axios.post('/user/login', payload);
 
         if (response.status === 200) {
-            const { token, user } = data;
-            AsyncStorage.setItem("token", token);
-            props.onSubmit();
+            const { token, user } = response.data;
+            props.onSubmit(token);
             return;
         }
 

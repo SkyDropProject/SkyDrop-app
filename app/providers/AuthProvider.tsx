@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 import React, { createContext, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
@@ -24,12 +25,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }): ReactElemen
 
     const signIn = async (token: string): Promise<void> => {
         await AsyncStorage.setItem('token', token);
+        axios.defaults.headers.common['Authorization'] = token;
         setIsSignedIn(true);
         window.location.href = '/(root)/(tabs)/home';
     };
 
     const signOut = async (): Promise<void> => {
         await AsyncStorage.removeItem('token');
+        axios.defaults.headers.common['Authorization'] = null;
         setIsSignedIn(false);
         window.location.href = '/(auth)/welcome';
     };

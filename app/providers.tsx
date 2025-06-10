@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ReactElement, ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 
@@ -14,6 +15,7 @@ const messages: langs = {
 export const AppProviders = ({ children }: { children: ReactNode }): ReactElement => {
     const language = navigator.language?.split('-')[0] ?? 'en';
     const locale = Object.keys(messages).includes(language) ? language : 'en';
+    axios.defaults.baseURL = 'http://localhost:3001';
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>

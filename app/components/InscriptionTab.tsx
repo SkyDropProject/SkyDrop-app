@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ReactElement, useState } from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
 
@@ -38,18 +39,10 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
             phone: phone,
         };
 
-        const response = await fetch('http://localhost:3001/user/', {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-        });
-        
-        const data = await response.json();
+        const response = await axios.put('/user/', payload);
 
         if (response.status && response.status !== 200) {
-            if (data.error && data.error === "email-already-exist") {
+            if (response.data.error && response.data.error === "email-already-exist") {
                 showAlert("Cet email existe déjà", "error");
             } else {
                 showAlert("Erreur lors de l'inscription", "error");
