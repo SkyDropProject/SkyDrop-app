@@ -23,5 +23,14 @@ interface User extends UserCoreData {
     favoriteProductsId: string[];
 }
 
-export { InscriptionUserPayload, User };
+interface LoginPayload {
+    email: string;
+    password: string;
+}
+
+export {
+    InscriptionUserPayload,
+    User,
+    LoginPayload,
+};
 

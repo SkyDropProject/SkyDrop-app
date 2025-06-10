@@ -1,6 +1,6 @@
+import { ProductType } from '@/app/interfaces/Product';
 import Icon from '@/app/utils/Icon';
 import { BodySize, TitleSize } from '@/app/utils/Typography';
-import { ProductType } from '@/app/interfaces/Product';
 
 interface inputProps {
     placeholder?: string;
@@ -84,11 +84,12 @@ interface DateInputProps {
 
 interface LoginTabProps {
     onPress: () => void;
+    onSubmit: () => void;
 }
 
 interface InscriptionTabProps {
     onPress: () => void;
-    onRegisterSubmit: () => void;
+    onSubmit: () => void;
 }
 
 export {
@@ -109,3 +110,4 @@ export {
     LoginTabProps,
     InscriptionTabProps,
 };
+

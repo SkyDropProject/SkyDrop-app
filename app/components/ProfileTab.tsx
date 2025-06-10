@@ -6,11 +6,13 @@ import Account from '@/app/components/Account';
 import IconButton from '@/app/components/IconButton';
 import TitleText from '@/app/components/TitleText';
 import { UserType } from '@/app/interfaces/User';
+import { useAuth } from '@/app/providers/AuthProvider';
 import Icon from '@/app/utils/Icon';
 import { TitleSize } from '@/app/utils/Typography';
 
 const ProfileTab = (): ReactElement => {
     const intl = useIntl();
+    const { signOut } = useAuth();
     const [user, setUser] = useState<UserType>({
         _id: '',
         accountType: '',
@@ -68,7 +70,7 @@ const ProfileTab = (): ReactElement => {
                     icon={Icon.megaphone}
                 />
                 <IconButton text={intl.formatMessage({ id: 'privacy_policy' })} icon={Icon.lock} />
-                <IconButton text={intl.formatMessage({ id: 'logout' })} icon={Icon.logout} />
+                <IconButton text={intl.formatMessage({ id: 'logout' })} icon={Icon.logout} onPress={() => { void signOut(); }} />
             </View>
         </View>
     );

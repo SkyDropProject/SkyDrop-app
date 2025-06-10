@@ -4,6 +4,7 @@ import { IntlProvider } from 'react-intl';
 import { langs } from './interfaces/lang';
 import { en } from './lang/en';
 import { fr } from './lang/fr';
+import { AuthProvider } from './providers/AuthProvider';
 
 const messages: langs = {
     en,
@@ -16,7 +17,9 @@ export const AppProviders = ({ children }: { children: ReactNode }): ReactElemen
 
     return (
         <IntlProvider locale={locale} messages={messages[locale]}>
-            {children}
+            <AuthProvider>
+                {children}
+            </AuthProvider>
         </IntlProvider>
     );
 };

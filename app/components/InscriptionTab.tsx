@@ -57,10 +57,7 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
             return;
         }
 
-        const { token, user } = data; //TODO: user to remove if data not used after
-
-        localStorage.setItem("token", token)
-        props.onRegisterSubmit();
+        props.onSubmit();
         showAlert('Vous êtes bien inscrit. Vous pouvez désormais vous connecter.', 'success'); //TODO: don't work actually
     };
     return (
