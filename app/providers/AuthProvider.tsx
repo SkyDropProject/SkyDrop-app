@@ -25,14 +25,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }): ReactElemen
 
     const signIn = async (token: string): Promise<void> => {
         await AsyncStorage.setItem('token', token);
-        axios.defaults.headers.common['Authorization'] = token;
+        axios.defaults.headers['token'] = token;
         setIsSignedIn(true);
         window.location.href = '/(root)/(tabs)/home';
     };
 
     const signOut = async (): Promise<void> => {
         await AsyncStorage.removeItem('token');
-        axios.defaults.headers.common['Authorization'] = null;
+        axios.defaults.headers['token'] = null;
         setIsSignedIn(false);
         window.location.href = '/(auth)/welcome';
     };
