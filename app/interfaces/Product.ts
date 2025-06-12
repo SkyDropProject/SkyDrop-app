@@ -2,7 +2,7 @@ import { CategoryType } from './Category';
 
 interface ProductType {
     _id?: string;
-    image: string;
+    imageUrl: string;
     name: string;
     price: number;
     description: string;

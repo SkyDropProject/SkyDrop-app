@@ -1,10 +1,10 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
 
-import { ProductType } from '@/app/interfaces/Product';
 import BodyText from '@/app/components/BodyText';
-import { BodySize } from '@/app/utils/Typography';
 import QuantityComponent from '@/app/components/QuantityComponent';
+import { ProductType } from '@/app/interfaces/Product';
+import { BodySize } from '@/app/utils/Typography';
 
 const { width } = Dimensions.get('window');
 
@@ -16,7 +16,7 @@ const ProductCartCard = ({ product }: { product: ProductType }): ReactElement =>
     }, [product]);
     return (
         <View style={styles.productCard}>
-            <Image style={styles.image} source={{ uri: product.image }} />
+            <Image style={styles.image} source={{ uri: product.imageUrl }} />
             <View style={styles.info}>
                 <BodyText text={product.name} size={BodySize.xlarge} />
                 <BodyText text={product.description} size={BodySize.small} />

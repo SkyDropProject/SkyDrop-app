@@ -1,11 +1,11 @@
 import { ReactElement, useState } from 'react';
-import { Dimensions, StyleSheet, View, Image } from 'react-native';
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
 
-import { ProductDetailProps } from '@/app/interfaces/component';
 import BodyText from '@/app/components/BodyText';
-import { BodySize } from '@/app/utils/Typography';
-import QuantityComponent from '@/app/components/QuantityComponent';
 import ExpansionPanel from '@/app/components/ExpansionPanel';
+import QuantityComponent from '@/app/components/QuantityComponent';
+import { ProductDetailProps } from '@/app/interfaces/component';
+import { BodySize } from '@/app/utils/Typography';
 
 import Icon from '../utils/Icon';
 const { width, height } = Dimensions.get('window');
@@ -15,7 +15,7 @@ const ProductDetail = (props: ProductDetailProps): ReactElement => {
     return (
         <View style={styles.ProductDetail}>
             <Icon.cross width={32} height={32} />
-            <Image source={{ uri: props.product.image }} style={styles.image} />
+            <Image source={{ uri: props.product.imageUrl }} style={styles.image} />
             <BodyText size={BodySize.xlarge} text={props.product.name} />
             <BodyText size={BodySize.large} text={props.product.price + ' €'} />
             <BodyText size={BodySize.medium} text={props.product.weight.toString()} />

@@ -1,4 +1,5 @@
-import { ReactElement, useState } from 'react';
+import axios from 'axios';
+import { ReactElement, useEffect, useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import BodyText from '@/app/components/BodyText';
@@ -8,10 +9,28 @@ import { BodySize } from '@/app/utils/Typography';
 
 const ProductCard = ({ product }: { product: ProductType }): ReactElement => {
     const [isLiked, setIsLiked] = useState(false);
+    const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
     const toggleLike = (): void => {
         setIsLiked(!isLiked);
     };
+
+    useEffect(() => {
+        let objectUrl: string | undefined;
+        const fetchImg = async (): Promise<void> => {
+            try {
+                const response = await axios.get('/uploads/' + product.imageUrl);
+                objectUrl = response.request.responseURL;
+                setImageUrl(objectUrl);
+            } catch {
+                setImageUrl(undefined);
+            }
+        };
+        fetchImg();
+        return (): void => {
+            if (objectUrl) URL.revokeObjectURL(objectUrl);
+        };
+    }, [product.imageUrl]);
 
     return (
         <TouchableOpacity style={styles.ProductCard} activeOpacity={0.8}>
@@ -20,7 +39,7 @@ const ProductCard = ({ product }: { product: ProductType }): ReactElement => {
             </View>
             <View>
                 <View style={styles.containerimage}>
-                    <Image style={styles.image} source={{ uri: product.image }} />
+                    <Image style={styles.image} source={{ uri: imageUrl }} />
                 </View>
                 <View style={styles.info}>
                     <BodyText text={product.name} size={BodySize.xlarge} />
