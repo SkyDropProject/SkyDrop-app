@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ReactElement, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -11,52 +12,10 @@ import { TitleSize } from '@/app/utils/Typography';
 const CatalogTab = (): ReactElement => {
     const [products, setProducts] = useState<ProductType[]>([]);
 
-    const initProducts = (): void => {
-        //route all products
-
-        const product: ProductType = {
-            name: 'Coca-Cola',
-            price: 2,
-            image: 'https://pizzavia.fr/wp-content/uploads/2025/01/coca.png',
-            stock: 15000,
-            _id: 'adbuz1234567890',
-            description: 'Canette classique de coca cola',
-            categoryId: 'Boisson',
-            weight: 33,
-        };
-        const bigmac: ProductType = {
-            name: 'Big-Mac',
-            price: 10,
-            image: 'https://eu-images.contentstack.com/v3/assets/blt5004e64d3579c43f/blt53e76fa73b472f03/666c66deb01d0ed0814618a2/BigMac_GLOBAL_400x400px_72DPI.png?auto=webp',
-            stock: 55,
-            _id: 'izjd9242948',
-            description: 'Burger classique du Mc do',
-            categoryId: 'Burger',
-            weight: 100,
-        };
-
-        const bigmac1: ProductType = {
-            name: 'Big-Mac',
-            price: 10,
-            image: 'https://eu-images.contentstack.com/v3/assets/blt5004e64d3579c43f/blt53e76fa73b472f03/666c66deb01d0ed0814618a2/BigMac_GLOBAL_400x400px_72DPI.png?auto=webp',
-            stock: 55,
-            _id: 'izjd9242948',
-            description: 'Burger classique du Mc do',
-            categoryId: 'Burger',
-            weight: 100,
-        };
-
-        const bigmac2: ProductType = {
-            name: 'Big-Mac',
-            price: 10,
-            image: 'https://eu-images.contentstack.com/v3/assets/blt5004e64d3579c43f/blt53e76fa73b472f03/666c66deb01d0ed0814618a2/BigMac_GLOBAL_400x400px_72DPI.png?auto=webp',
-            stock: 55,
-            _id: 'izjd9242948',
-            description: 'Burger classique du Mc do',
-            categoryId: 'Burger',
-            weight: 100,
-        };
-        setProducts([product, bigmac, bigmac1, bigmac2]);
+    const initProducts = async (): Promise<void> => {
+        const response = await axios.get('/product');
+        const products: ProductType[] = response.data;
+        setProducts(products);
     };
 
     useEffect(() => {
