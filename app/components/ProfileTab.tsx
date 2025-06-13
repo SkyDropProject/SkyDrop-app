@@ -5,15 +5,18 @@ import { StyleSheet, View } from 'react-native';
 import Account from '@/app/components/Account';
 import IconButton from '@/app/components/IconButton';
 import TitleText from '@/app/components/TitleText';
-import { UserType } from '@/app/interfaces/User';
+import {User} from '@/app/interfaces/User';
 import { useAuth } from '@/app/providers/AuthProvider';
 import Icon from '@/app/utils/Icon';
 import { TitleSize } from '@/app/utils/Typography';
+import axios from "axios";
+import { ActivityIndicator } from 'react-native';
 
 const ProfileTab = (): ReactElement => {
     const intl = useIntl();
     const { signOut } = useAuth();
-    const [user, setUser] = useState<UserType>({
+    const [user, setUser] = useState<User | undefined>({
+        birthdate: new Date(),
         _id: '',
         accountType: '',
         address: '',
@@ -28,29 +31,29 @@ const ProfileTab = (): ReactElement => {
         zip: '',
         firstName: '',
         lastName: '',
-        email: '',
+        email: ''
     });
-    const initUser = (): void => {
-        // init User ici
-        const user: UserType = {
-            firstName: 'Ian',
-            lastName: 'Bertin',
-            email: 'ian.bertin@etu.mines-ales.fr',
-            password: '',
-            registrationDate: new Date(),
-            address: '',
-            zip: '',
-            city: '',
-            phone: '',
-            accountType: '',
-            favoriteProductsId: [],
-        };
-        setUser(user);
-    };
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
+        const initUser = async (): Promise<void> => {
+            try {
+                const response = await axios.get("/user/me");
+                if (response.status === 200) {
+                    setUser(response.data);
+                }
+            } catch (e) {
+            } finally {
+                setIsLoading(false);
+            }
+        };
         initUser();
     }, []);
+
+    if (isLoading) {
+        return <ActivityIndicator />;
+    }
     return (
         <View style={styles.profilemenu}>
             <View style={styles.header}>

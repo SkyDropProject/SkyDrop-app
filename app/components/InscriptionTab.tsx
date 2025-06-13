@@ -21,7 +21,7 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phone, setPhone] = useState('');
@@ -29,13 +29,16 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
     const { showAlert } = useAlert();
 
     const handleSubmit = async (): Promise<void> => {
+        const [day, month, year] = date.split('/');
+        const birthdate = new Date(Number(year), Number(month) - 1, Number(day));
+
         const payload: InscriptionUserPayload = {
             email: email,
             password: password,
             confirmPassword: confirmPassword,
             firstName: firstName,
             lastName: lastName,
-            birthdate: date.getTime(),
+            birthdate: birthdate,
             phone: phone,
         };
 
@@ -83,13 +86,8 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
                     />
                     <DateInput
                         placeholder={'Date de naissance'}
-                        value={date.getTime().toString()}
-                        onChange={(text: string) => {
-                            const newDate = new Date(text);
-                            if (!isNaN(newDate.getTime())) {
-                                setDate(newDate);
-                            }
-                        }}
+                        value={date}
+                        onChange={setDate}
                     />
                     <InputField
                         value={phone}
@@ -113,7 +111,7 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
                         <SubmitButton text={"S'inscrire"} onPress={handleSubmit} />
                     </View>
                 </View>
-                <View style={styles.row}>
+                <View style={styles.buttonText}>
                     <BodyText size={BodySize.small} text={'Vous avez un compte ?'} />
                     <LinkButton text={'Connectez-vous'} onPress={props.onPress} />
                 </View>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import {Dimensions, Image, ScrollView, StyleSheet, View} from 'react-native';
 
 import { useAlert } from '@/app/components/AlertContext';
 import BodyText from '@/app/components/BodyText';
@@ -25,7 +25,7 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
 
     const handleSubmit = async (): Promise<void> => {
         const payload: LoginPayload = {
-            email: email,
+            email: email.toLowerCase(),
             password: password,
         };
         const response = await axios.post('/user/login', payload);
@@ -33,6 +33,7 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
         if (response.status === 200) {
             const { token, user } = response.data;
             props.onSubmit(token);
+            showAlert("Login successfully sent");
             return;
         }
 
@@ -43,7 +44,7 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
         showAlert("Une erreur s'est produite", 'warning');
     };
     return (
-        <View style={styles.login}>
+        <ScrollView style={styles.login}>
             <Image source={banner} style={styles.banner} />
             <View style={styles.viewUtil}>
                 <View style={styles.title}>
@@ -73,7 +74,7 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
                     <LinkButton text={'Inscrivez-vous'} onPress={props.onPress} />
                 </View>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
