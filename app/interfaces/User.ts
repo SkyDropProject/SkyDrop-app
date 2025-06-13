@@ -3,7 +3,7 @@ interface UserCoreData {
     password: string;
     firstName: string;
     lastName: string;
-    birthdate: number;
+    birthdate: Date;
     phone: string;
 }
 

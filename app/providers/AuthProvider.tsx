@@ -8,6 +8,7 @@ import React, {
     useEffect,
     useState,
 } from 'react';
+import {router, useNavigation} from "expo-router";
 
 interface AuthContextType {
     isSignedIn: boolean;
@@ -25,6 +26,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }): ReactElemen
         const checkToken = async (): Promise<void> => {
             const token = await AsyncStorage.getItem('token');
             setIsSignedIn(!!token);
+            axios.defaults.headers['token'] = token;
             setLoading(false);
         };
         checkToken();
@@ -34,14 +36,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }): ReactElemen
         await AsyncStorage.setItem('token', token);
         axios.defaults.headers['token'] = token;
         setIsSignedIn(true);
-        window.location.href = '/(root)/(tabs)/home';
+        router.replace('/(root)/(tabs)/home');
     };
 
     const signOut = async (): Promise<void> => {
         await AsyncStorage.removeItem('token');
         axios.defaults.headers['token'] = null;
         setIsSignedIn(false);
-        window.location.href = '/(auth)/welcome';
+        router.replace('/(auth)/welcome');
     };
 
     if (loading) return null;

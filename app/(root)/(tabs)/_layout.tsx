@@ -1,9 +1,10 @@
-import { Tabs } from 'expo-router';
-import { ReactElement } from 'react';
+import {router, Tabs} from 'expo-router';
+import {ReactElement, useEffect} from 'react';
 import { useIntl } from 'react-intl';
 import { Text, View } from 'react-native';
 
 import Icon from '@/app/utils/Icon';
+import {useAuth} from "@/app/providers/AuthProvider";
 
 const TabIcon = ({
     Icon,

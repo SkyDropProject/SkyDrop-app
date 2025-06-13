@@ -1,7 +1,7 @@
-// app/_layout.tsx
+
 import { Stack } from 'expo-router';
 import { ReactElement } from 'react';
-import { Alert } from 'react-native';
+import Alert from '@/app/components/Alert';
 import './globals.css';
 
 import { AlertProvider } from '@/app/components/AlertContext';
