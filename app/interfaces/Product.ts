@@ -1,4 +1,3 @@
-
 interface ProductType {
     _id: string;
     imageUrl: string;

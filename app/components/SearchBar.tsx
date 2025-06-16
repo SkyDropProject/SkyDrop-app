@@ -1,13 +1,17 @@
-import React, {ReactElement, useState} from 'react';
+import React, { ReactElement, useState } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
 import { SearchBarProps } from '@/app/interfaces/component';
-import Icon from "@/app/utils/Icon";
+import Icon from '@/app/utils/Icon';
 
-const SearchBar = ({ placeholder = 'Rechercher...', onChangeText, value } : SearchBarProps) : ReactElement => {
+const SearchBar = ({
+    placeholder = 'Rechercher...',
+    onChangeText,
+    value,
+}: SearchBarProps): ReactElement => {
     const [search, setSearch] = useState(value ?? '');
 
-    const handleChange = (text: string) : void => {
+    const handleChange = (text: string): void => {
         setSearch(text);
         onChangeText?.(text);
     };
@@ -15,7 +19,7 @@ const SearchBar = ({ placeholder = 'Rechercher...', onChangeText, value } : Sear
     return (
         <View style={styles.container}>
             <View style={styles.icone}>
-            <Icon.search/>
+                <Icon.search />
             </View>
             <TextInput
                 style={styles.input}
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
-        borderRadius : 12,
+        borderRadius: 12,
         backgroundColor: '#fff',
         textAlign: 'center',
         paddingHorizontal: 10,
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
 });
 
 export default SearchBar;

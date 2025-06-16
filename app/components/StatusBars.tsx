@@ -1,8 +1,8 @@
-import React, {ReactElement} from "react";
-import { View, StyleSheet } from "react-native";
+import React, { ReactElement } from 'react';
+import { View, StyleSheet } from 'react-native';
 
-import {StatusBarsProps} from "@/app/interfaces/component";
-import AnimatedBar from "@/app/components/AnimatedBar";
+import { StatusBarsProps } from '@/app/interfaces/component';
+import AnimatedBar from '@/app/components/AnimatedBar';
 
 const StatusBars = ({ status }: StatusBarsProps): ReactElement => (
     <View style={styles.row}>
@@ -10,7 +10,7 @@ const StatusBars = ({ status }: StatusBarsProps): ReactElement => (
             <View key={i} style={styles.barContainer}>
                 {i < status ? (
                     <View style={[styles.barBackground]}>
-                        <View style={[styles.barFill, { width: "100%" }]} />
+                        <View style={[styles.barFill, { width: '100%' }]} />
                     </View>
                 ) : i === status ? (
                     <AnimatedBar active />
@@ -24,22 +24,23 @@ const StatusBars = ({ status }: StatusBarsProps): ReactElement => (
 
 const styles = StyleSheet.create({
     row: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     barContainer: {
         flex: 1,
         marginHorizontal: 4,
-    }, barBackground: {
+    },
+    barBackground: {
         height: 8,
-        backgroundColor: "#e0e0e0",
+        backgroundColor: '#e0e0e0',
         borderRadius: 4,
-        overflow: "hidden",
+        overflow: 'hidden',
     },
     barFill: {
         height: 8,
-        backgroundColor: "#386BF6",
+        backgroundColor: '#386BF6',
         borderRadius: 4,
     },
 });

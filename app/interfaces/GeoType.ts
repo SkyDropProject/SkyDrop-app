@@ -3,4 +3,4 @@ interface GeoType {
     longitude: number;
 }
 
-export {GeoType}
+export { GeoType };

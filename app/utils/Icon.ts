@@ -36,7 +36,7 @@ import snackSvg from '@/assets/svg/snack.svg';
 import success from '@/assets/svg/success.svg';
 import warning from '@/assets/svg/warning.svg';
 import search from '@/assets/svg/Search.svg';
-import arrow_bottom from '@/assets/svg/arrow_bottom.svg'
+import arrow_bottom from '@/assets/svg/arrow_bottom.svg';
 import drone_delivery from '@/assets/svg/drone_delivery.svg';
 
 const Icon = Object.freeze({
@@ -78,7 +78,7 @@ const Icon = Object.freeze({
     success: success,
     warning: warning,
     info: info,
-    search : search,
+    search: search,
     drone_delivery: drone_delivery,
 });
 

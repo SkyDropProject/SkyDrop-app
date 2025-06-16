@@ -1,7 +1,7 @@
 import { ProductType } from '@/app/interfaces/Product';
 import Icon from '@/app/utils/Icon';
 import { BodySize, TitleSize } from '@/app/utils/Typography';
-import {OrderType} from "@/app/interfaces/Order";
+import { OrderType } from '@/app/interfaces/Order';
 
 interface inputProps {
     placeholder?: string;
@@ -66,7 +66,7 @@ interface LikeButtonProps {
 interface QuantityComponentProps {
     quantity: number;
     setQuantity: (quantity: number) => void;
-    loading: boolean,
+    loading: boolean;
     min?: number;
 }
 
@@ -108,7 +108,7 @@ interface ProductCartCardProps {
     product: ProductType & { quantity?: number };
     onIncrease?: (productId: string) => void;
     onDecrease?: (productId: string) => void;
-    loading: boolean
+    loading: boolean;
     disabled?: boolean;
 }
 
@@ -133,7 +133,7 @@ interface inputProps {
 
 interface DeliveryPositionPickerProps {
     position: string;
-    onPress: () => void
+    onPress: () => void;
 }
 
 interface DroneTabProps {
@@ -174,5 +174,5 @@ export {
     DroneTabProps,
     StatusBarsProps,
     AnimatedBarsProps,
-    CurrentOrderIndicatorProps
+    CurrentOrderIndicatorProps,
 };

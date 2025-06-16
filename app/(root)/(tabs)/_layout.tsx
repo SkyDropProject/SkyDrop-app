@@ -1,5 +1,5 @@
-import { Tabs} from 'expo-router';
-import {ReactElement} from 'react';
+import { Tabs } from 'expo-router';
+import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import { Text, View } from 'react-native';
 
@@ -38,7 +38,7 @@ const TabIcon = ({
                     fontWeight: 'bold',
                     opacity: focused ? 1 : 0,
                     flexShrink: 1,
-                    minWidth:0
+                    minWidth: 0,
                 }}
             >
                 {label}

@@ -84,11 +84,7 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
                         onChangeText={setEmail}
                         keyboardType={'email-address'}
                     />
-                    <DateInput
-                        placeholder={'Date de naissance'}
-                        value={date}
-                        onChange={setDate}
-                    />
+                    <DateInput placeholder={'Date de naissance'} value={date} onChange={setDate} />
                     <InputField
                         value={phone}
                         onChangeText={setPhone}

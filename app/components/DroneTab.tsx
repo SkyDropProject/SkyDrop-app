@@ -1,25 +1,25 @@
-import React, {ReactElement, useEffect, useState} from 'react';
-import {StyleSheet, View, Dimensions, ActivityIndicator} from 'react-native';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { StyleSheet, View, Dimensions, ActivityIndicator } from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Icon from "@/app/utils/Icon";
-import {GeoType} from "@/app/interfaces/GeoType";
-import {DroneType} from "@/app/interfaces/Drone";
-import {DroneTabProps} from "@/app/interfaces/component";
-import StatusBars from "@/app/components/StatusBars";
+import Icon from '@/app/utils/Icon';
+import { GeoType } from '@/app/interfaces/GeoType';
+import { DroneType } from '@/app/interfaces/Drone';
+import { DroneTabProps } from '@/app/interfaces/component';
+import StatusBars from '@/app/components/StatusBars';
 
-const DroneTab = (props : DroneTabProps) : ReactElement => {
-    const [targetPosition, setTargetPosition] = useState<GeoType>({latitude: 0, longitude: 0});
+const DroneTab = (props: DroneTabProps): ReactElement => {
+    const [targetPosition, setTargetPosition] = useState<GeoType>({ latitude: 0, longitude: 0 });
     const [loading, setLoading] = useState(false);
     const [drone, setDrone] = useState<DroneType | null>(null);
-    const convertXYtoLatLng = (coords: { x: number, y: number }) : GeoType => ({
+    const convertXYtoLatLng = (coords: { x: number; y: number }): GeoType => ({
         latitude: coords.x,
         longitude: coords.y,
     });
-    const getDrones = async () : Promise<void>=> {
-        const response = await axios.get("/drone/" + props.order.droneId._id)
+    const getDrones = async (): Promise<void> => {
+        const response = await axios.get('/drone/' + props.order.droneId._id);
         if (response.status === 200) {
             const droneData = response.data;
             const newCoordinates = convertXYtoLatLng(droneData.coordinates);
@@ -34,24 +34,24 @@ const DroneTab = (props : DroneTabProps) : ReactElement => {
                 });
             }
         }
-    }
+    };
 
-    const getDeliveryLocation = async () : Promise<void>=> {
+    const getDeliveryLocation = async (): Promise<void> => {
         const location = await AsyncStorage.getItem('location');
-        if(location){
+        if (location) {
             const coords: GeoType = JSON.parse(location);
             setTargetPosition(coords);
         }
         setLoading(false);
-    }
+    };
 
     const getStatusIndex = (status: string): 0 | 1 | 2 => {
         switch (status) {
-            case "waiting":
+            case 'waiting':
                 return 0;
-            case "ready":
+            case 'ready':
                 return 1;
-            case "pending":
+            case 'pending':
                 return 2;
             default:
                 return 0;
@@ -60,8 +60,8 @@ const DroneTab = (props : DroneTabProps) : ReactElement => {
 
     useEffect(() => {
         setLoading(true);
-        getDeliveryLocation()
-        getDrones()
+        getDeliveryLocation();
+        getDrones();
     }, []);
 
     useEffect(() => {
@@ -72,20 +72,20 @@ const DroneTab = (props : DroneTabProps) : ReactElement => {
             interval = setInterval(getDrones, 2000);
         }
 
-        return () : void=> {
+        return (): void => {
             if (interval) clearInterval(interval);
         };
-    }, [props,props.visible]);
+    }, [props, props.visible]);
 
-    if(loading){
+    if (loading) {
         return <ActivityIndicator size="large" color="white" />;
     }
-    if(!drone){
+    if (!drone) {
         return <ActivityIndicator size="large" color="white" />;
     }
 
     return (
-        <View style={styles.DroneTab} >
+        <View style={styles.DroneTab}>
             <View style={styles.container}>
                 <MapView
                     style={styles.map}
@@ -108,29 +108,29 @@ const DroneTab = (props : DroneTabProps) : ReactElement => {
                 </MapView>
             </View>
             <View style={styles.informations}>
-                <StatusBars status={getStatusIndex(drone.status)}  />
+                <StatusBars status={getStatusIndex(drone.status)} />
             </View>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
-    DroneTab:{
+    DroneTab: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
     },
     container: {
-        display: "flex",
+        display: 'flex',
     },
-    informations:{
-        display: "flex",
-        flexDirection: "column",
-        gap:20,
-        margin:20,
+    informations: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 20,
+        margin: 20,
     },
     map: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height *0.6,
+        height: Dimensions.get('window').height * 0.6,
     },
 });
 

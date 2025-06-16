@@ -1,14 +1,17 @@
-import React, {ReactElement} from 'react';
+import React, { ReactElement } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import Icon from '../utils/Icon';
 import { DeliveryPositionPickerProps } from '../interfaces/component';
 
-const DeliveryPositionPicker = ({ position, onPress }: DeliveryPositionPickerProps): ReactElement  => (
+const DeliveryPositionPicker = ({
+    position,
+    onPress,
+}: DeliveryPositionPickerProps): ReactElement => (
     <View>
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <Text style={styles.text}>{position}</Text>
-            <Icon.arrow_bottom/>
+            <Icon.arrow_bottom />
         </TouchableOpacity>
     </View>
 );

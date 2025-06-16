@@ -1,11 +1,11 @@
-import {ProductType} from "@/app/interfaces/Product";
-import {GeoType} from "@/app/interfaces/GeoType";
-import {DroneType} from "@/app/interfaces/Drone";
-import {User} from "@/app/interfaces/User";
+import { ProductType } from '@/app/interfaces/Product';
+import { GeoType } from '@/app/interfaces/GeoType';
+import { DroneType } from '@/app/interfaces/Drone';
+import { User } from '@/app/interfaces/User';
 
 interface OrderType {
     _id?: string;
-    userId: User| string;
+    userId: User | string;
     droneId: DroneType;
     dateOrder: Date;
     status: string;

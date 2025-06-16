@@ -1,7 +1,7 @@
-import {router, Stack} from 'expo-router';
-import {ReactElement, useEffect} from 'react';
+import { router, Stack } from 'expo-router';
+import { ReactElement, useEffect } from 'react';
 
-import {useAuth} from "@/app/providers/AuthProvider";
+import { useAuth } from '@/app/providers/AuthProvider';
 
 import { ProductModalProvider } from '../providers/ProductModalProvider';
 
@@ -9,11 +9,10 @@ const Layout = (): ReactElement => {
     const { isSignedIn } = useAuth();
 
     useEffect(() => {
-        if(!isSignedIn) {
+        if (!isSignedIn) {
             router.push('/(auth)/welcome');
         }
     }, [isSignedIn]);
-
 
     return (
         <ProductModalProvider>

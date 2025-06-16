@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
-import {Dimensions, Image, ScrollView, StyleSheet, View} from 'react-native';
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useAlert } from '@/app/components/AlertContext';
 import BodyText from '@/app/components/BodyText';
@@ -35,7 +35,7 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
             const { token, user } = response.data;
             await AsyncStorage.setItem('userId', user._id);
             props.onSubmit(token);
-            showAlert("Vous êtes maintenant connecté");
+            showAlert('Vous êtes maintenant connecté');
             return;
         }
 

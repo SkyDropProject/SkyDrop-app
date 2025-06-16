@@ -1,4 +1,4 @@
-import {GeoType} from "@/app/interfaces/GeoType";
+import { GeoType } from '@/app/interfaces/GeoType';
 
 interface DroneType {
     _id: string;

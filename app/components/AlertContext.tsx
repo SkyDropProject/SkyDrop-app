@@ -27,7 +27,7 @@ export const AlertProvider = ({ children }: { children: ReactNode }): ReactEleme
     const hideAlert = (): void => setAlert(null);
 
     return (
-        <AlertContext.Provider  value={{ showAlert, hideAlert, alert }}>
+        <AlertContext.Provider value={{ showAlert, hideAlert, alert }}>
             {children}
         </AlertContext.Provider>
     );

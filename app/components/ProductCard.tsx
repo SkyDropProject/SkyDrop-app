@@ -1,13 +1,19 @@
 import { ReactElement, useState } from 'react';
-import { Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import BodyText from '@/app/components/BodyText';
 import LikeButton from '@/app/components/LikeButton';
 import { ProductType } from '@/app/interfaces/Product';
 import { BodySize } from '@/app/utils/Typography';
-import {API_URL} from "@/app/utils/Api";
+import { API_URL } from '@/app/utils/Api';
 
-const ProductCard = ({ product, onPress }: { product: ProductType, onPress: () =>  void }): ReactElement => {
+const ProductCard = ({
+    product,
+    onPress,
+}: {
+    product: ProductType;
+    onPress: () => void;
+}): ReactElement => {
     const [isLiked, setIsLiked] = useState(false);
 
     const toggleLike = (): void => {
@@ -21,7 +27,11 @@ const ProductCard = ({ product, onPress }: { product: ProductType, onPress: () =
             </View>
             <View>
                 <View style={styles.containerimage}>
-                    <Image style={styles.image} source={{ uri: API_URL + "/uploads/" + product.imageUrl }} resizeMode="contain" />
+                    <Image
+                        style={styles.image}
+                        source={{ uri: API_URL + '/uploads/' + product.imageUrl }}
+                        resizeMode="contain"
+                    />
                 </View>
                 <View style={styles.info}>
                     <BodyText text={product.name} size={BodySize.xlarge} />

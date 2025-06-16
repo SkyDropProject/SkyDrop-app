@@ -22,14 +22,14 @@ const en: lang = {
     welcome: 'Welcome !',
     details: 'Details',
     products: 'Products',
-    searchForAProduct: "Search a product...",
+    searchForAProduct: 'Search a product...',
     addToCart: 'Add to cart',
-    stars: "Our Stars",
+    stars: 'Our Stars',
     location: 'Location',
     orderTitle: 'Your Order',
     noCurrentOrder: "You don't have any active orders",
     YourCart: 'Your cart',
-    lastOrders: "Your last orders",
+    lastOrders: 'Your last orders',
 };
 
 export { en };

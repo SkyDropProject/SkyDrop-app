@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
-import axios from "axios";
+import axios from 'axios';
 
 import { useAuth } from '@/app/providers/AuthProvider';
 import Icon from '@/app/utils/Icon';
@@ -9,7 +9,7 @@ import { TitleSize } from '@/app/utils/Typography';
 import Account from '@/app/components/Account';
 import IconButton from '@/app/components/IconButton';
 import TitleText from '@/app/components/TitleText';
-import {User} from '@/app/interfaces/User';
+import { User } from '@/app/interfaces/User';
 
 const ProfileTab = (): ReactElement => {
     const intl = useIntl();
@@ -30,15 +30,14 @@ const ProfileTab = (): ReactElement => {
         zip: '',
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
     });
     const [isLoading, setIsLoading] = useState(true);
-
 
     useEffect(() => {
         const initUser = async (): Promise<void> => {
             try {
-                const response = await axios.get("/user/me");
+                const response = await axios.get('/user/me');
                 if (response.status === 200) {
                     setUser(response.data);
                 }
@@ -52,8 +51,8 @@ const ProfileTab = (): ReactElement => {
     if (isLoading) {
         return <ActivityIndicator />;
     }
-    if(user === undefined) {
-        return (<Text> Erreur avec le serveur</Text>)
+    if (user === undefined) {
+        return <Text> Erreur avec le serveur</Text>;
     }
     return (
         <View style={styles.profilemenu}>

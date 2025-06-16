@@ -15,7 +15,6 @@ export async function getAddressFromCoords(latitude: number, longitude: number):
             return parts.join(', ');
         }
         return 'Adresse inconnue';
-
     } catch {
         return 'Adresse inconnue';
     }

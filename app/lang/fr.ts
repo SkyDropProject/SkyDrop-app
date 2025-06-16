@@ -22,14 +22,14 @@ const fr: lang = {
     welcome: 'Bienvenue !',
     details: 'Détails',
     products: 'Produits',
-    searchForAProduct: "Rechercher un produit...",
+    searchForAProduct: 'Rechercher un produit...',
     addToCart: 'Ajouter au panier',
-    stars: "Nos vedettes",
+    stars: 'Nos vedettes',
     location: 'Position',
     orderTitle: 'Votre commande',
-    noCurrentOrder: "Vous n’avez aucune commande en cours",
-    YourCart: "Votre panier",
-    lastOrders: "Vos dernières commandes"
+    noCurrentOrder: 'Vous n’avez aucune commande en cours',
+    YourCart: 'Votre panier',
+    lastOrders: 'Vos dernières commandes',
 };
 
 export { fr };

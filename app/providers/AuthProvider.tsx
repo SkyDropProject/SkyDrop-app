@@ -8,7 +8,7 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import {router} from "expo-router";
+import { router } from 'expo-router';
 
 interface AuthContextType {
     isSignedIn: boolean;

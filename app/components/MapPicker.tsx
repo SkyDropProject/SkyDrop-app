@@ -1,20 +1,20 @@
-import React, { useEffect, useImperativeHandle, useState, forwardRef} from 'react';
-import {View, StyleSheet, Dimensions, Alert, TouchableOpacity, Text} from 'react-native';
+import React, { useEffect, useImperativeHandle, useState, forwardRef } from 'react';
+import { View, StyleSheet, Dimensions, Alert, TouchableOpacity, Text } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {GeoType} from "@/app/interfaces/GeoType";
-import TitleText from "@/app/components/TitleText";
-import {TitleSize} from "@/app/utils/Typography";
-import {MapPickerProps} from "@/app/interfaces/component";
-import InputField from "@/app/components/InputField";
+import { GeoType } from '@/app/interfaces/GeoType';
+import TitleText from '@/app/components/TitleText';
+import { TitleSize } from '@/app/utils/Typography';
+import { MapPickerProps } from '@/app/interfaces/component';
+import InputField from '@/app/components/InputField';
 
 import SubmitButton from './SubmitButton';
 import { getAddressFromCoords } from '../utils/Geo';
 
 const { width, height } = Dimensions.get('window');
 
-const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
+const MapPicker = forwardRef<any, MapPickerProps>((props, ref) => {
     MapPicker.displayName = 'MapPicker';
     const defaultRegion = {
         latitude: 44.1256,
@@ -29,13 +29,15 @@ const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
     const [suggestions, setSuggestions] = useState<any[]>([]);
     const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout | null>(null);
 
-    const fetchSuggestions = async (query: string) : Promise<void> => {
+    const fetchSuggestions = async (query: string): Promise<void> => {
         if (!query) {
             setSuggestions([]);
             return;
         }
         try {
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`);
+            const response = await fetch(
+                `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`
+            );
             const data = await response.json();
             setSuggestions(data);
         } catch {
@@ -43,14 +45,14 @@ const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
         }
     };
 
-    const handleSearchChange = (text: string) : void=> {
+    const handleSearchChange = (text: string): void => {
         setSearch(text);
         if (debounceTimeout) clearTimeout(debounceTimeout);
         const timeout = setTimeout(() => fetchSuggestions(text), 400);
         setDebounceTimeout(timeout);
     };
 
-    const handleSuggestionPress = (item: any) : void=> {
+    const handleSuggestionPress = (item: any): void => {
         setSearch(item.display_name);
         setSuggestions([]);
         const coords = { latitude: parseFloat(item.lat), longitude: parseFloat(item.lon) };
@@ -58,13 +60,17 @@ const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
         setMarker(coords);
     };
 
-    const handleMapPress = (e: { nativeEvent: { coordinate: React.SetStateAction<GeoType | null>; }; }) : void => {
+    const handleMapPress = (e: {
+        nativeEvent: { coordinate: React.SetStateAction<GeoType | null> };
+    }): void => {
         setMarker(e.nativeEvent.coordinate);
     };
 
-    const handleSearch = async () : Promise<void> => {
+    const handleSearch = async (): Promise<void> => {
         try {
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(search)}`);
+            const response = await fetch(
+                `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(search)}`
+            );
             const data = await response.json();
             if (data && data.length > 0) {
                 const { lat, lon } = data[0];
@@ -90,7 +96,7 @@ const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
         props.onClose();
     };
 
-    const loadPosition = async () : Promise<void> => {
+    const loadPosition = async (): Promise<void> => {
         const saved = await AsyncStorage.getItem('location');
         if (saved) {
             const coords: GeoType = JSON.parse(saved);
@@ -107,7 +113,7 @@ const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
         }
     };
     useImperativeHandle(ref, () => ({
-        reload: loadPosition
+        reload: loadPosition,
     }));
 
     useEffect(() => {
@@ -116,9 +122,7 @@ const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
 
     useEffect(() => {
         if (props.onOpen) props.onOpen();
-    }, [props,props.onOpen]);
-
-
+    }, [props, props.onOpen]);
 
     return (
         <View style={styles.container}>
@@ -133,7 +137,7 @@ const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
             {suggestions.length > 0 && (
                 <View style={styles.suggestionWrapper}>
                     <View style={styles.suggestionList}>
-                        {suggestions.map(item => (
+                        {suggestions.map((item) => (
                             <TouchableOpacity
                                 key={item.place_id}
                                 onPress={() => handleSuggestionPress(item)}
@@ -145,11 +149,7 @@ const MapPicker = forwardRef<any,MapPickerProps>((props, ref)  => {
                     </View>
                 </View>
             )}
-            <MapView
-                style={styles.map}
-                region={region}
-                onPress={handleMapPress}
-            >
+            <MapView style={styles.map} region={region} onPress={handleMapPress}>
                 {marker && <Marker coordinate={marker} />}
             </MapView>
             <View style={styles.buttonContainer}>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        flex:1,
+        flex: 1,
         padding: 30,
     },
     map: {

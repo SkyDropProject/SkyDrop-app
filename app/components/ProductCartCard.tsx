@@ -4,12 +4,18 @@ import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import BodyText from '@/app/components/BodyText';
 import QuantityComponent from '@/app/components/QuantityComponent';
 import { BodySize } from '@/app/utils/Typography';
-import {API_URL} from "@/app/utils/Api";
-import {ProductCartCardProps} from "@/app/interfaces/component";
+import { API_URL } from '@/app/utils/Api';
+import { ProductCartCardProps } from '@/app/interfaces/component';
 
 const { width } = Dimensions.get('window');
 
-const ProductCartCard = ({ product,onIncrease,onDecrease,loading, disabled }: ProductCartCardProps): ReactElement => {
+const ProductCartCard = ({
+    product,
+    onIncrease,
+    onDecrease,
+    loading,
+    disabled,
+}: ProductCartCardProps): ReactElement => {
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState(product.quantity || 1);
     useEffect(() => {
@@ -18,33 +24,34 @@ const ProductCartCard = ({ product,onIncrease,onDecrease,loading, disabled }: Pr
 
     return (
         <View style={styles.productCard}>
-            <Image source={{ uri: API_URL + "/uploads/" + product.imageUrl }} style={styles.image} />
+            <Image
+                source={{ uri: API_URL + '/uploads/' + product.imageUrl }}
+                style={styles.image}
+            />
             <View style={styles.info}>
                 <BodyText text={product.name} size={BodySize.xlarge} />
                 <BodyText text={product.description} size={BodySize.small} />
                 <View style={styles.last_row}>
-                    {
-                        !disabled ? (
-                            <QuantityComponent
-                                quantity={quantity}
-                                setQuantity={(newQuantity) => {
-                                    if (newQuantity > quantity) {
-                                        setQuantity(newQuantity);
-                                        if (onIncrease) {
-                                            onIncrease(product._id);
-                                        }
-                                    } else if (newQuantity < quantity) {
-                                        setQuantity(newQuantity);
-                                        if (onDecrease) {
-                                            onDecrease(product._id);
-                                        }
+                    {!disabled ? (
+                        <QuantityComponent
+                            quantity={quantity}
+                            setQuantity={(newQuantity) => {
+                                if (newQuantity > quantity) {
+                                    setQuantity(newQuantity);
+                                    if (onIncrease) {
+                                        onIncrease(product._id);
                                     }
-                                }}
-                                loading={loading}
-                                min={0}
-                            />
-                        ) : null
-                    }
+                                } else if (newQuantity < quantity) {
+                                    setQuantity(newQuantity);
+                                    if (onDecrease) {
+                                        onDecrease(product._id);
+                                    }
+                                }
+                            }}
+                            loading={loading}
+                            min={0}
+                        />
+                    ) : null}
                     <View>
                         <BodyText size={BodySize.xlarge} text={price} />
                     </View>

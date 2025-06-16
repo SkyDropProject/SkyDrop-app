@@ -7,7 +7,6 @@ const Welcome = (): ReactElement => {
     const [isInscription, setIsInscription] = useState<boolean>(false);
     const { signIn } = useAuth();
 
-
     return isInscription ? (
         <InscriptionTab
             onPress={() => setIsInscription(false)}
