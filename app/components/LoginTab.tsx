@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
 import {Dimensions, Image, ScrollView, StyleSheet, View} from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useAlert } from '@/app/components/AlertContext';
 import BodyText from '@/app/components/BodyText';
@@ -14,7 +15,7 @@ import { BodySize, TitleSize } from '@/app/utils/Typography';
 import banner from '@/assets/images/banner.png';
 
 import { LoginPayload } from '../interfaces/User';
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const LoginTab = (props: LoginTabProps): ReactElement => {
     const [email, setEmail] = useState('');
@@ -32,8 +33,9 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
 
         if (response.status === 200) {
             const { token, user } = response.data;
+            await AsyncStorage.setItem('userId', user._id);
             props.onSubmit(token);
-            showAlert("Login successfully sent");
+            showAlert("Vous êtes maintenant connecté");
             return;
         }
 

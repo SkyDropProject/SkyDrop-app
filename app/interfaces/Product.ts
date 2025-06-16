@@ -1,14 +1,14 @@
-import { CategoryType } from './Category';
 
 interface ProductType {
-    _id?: string;
+    _id: string;
     imageUrl: string;
     name: string;
     price: number;
     description: string;
     stock: number;
     weight: number;
-    categoryId: CategoryType | string;
+    categoryId: string;
+    quantity?: number;
 }
 
 export { ProductType };

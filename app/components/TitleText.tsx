@@ -9,19 +9,19 @@ const TitleText = (props: TitleProps): ReactElement => {
 
 const styles = StyleSheet.create({
     h1: {
-        fontFamily: 'Inter',
+        fontFamily: 'inter',
         fontWeight: 'bold',
         fontSize: 24,
         marginBottom: 15,
     },
     h2: {
-        fontFamily: 'Inter',
+        fontFamily: 'inter',
         fontWeight: 'bold',
         fontSize: 16,
         marginBottom: 15,
     },
     h3: {
-        fontFamily: 'Inter',
+        fontFamily: 'inter',
         fontWeight: 'bold',
         fontSize: 14,
         marginBottom: 15,

@@ -15,7 +15,7 @@ import banner from '@/assets/images/banner.png';
 
 import { InscriptionUserPayload } from '../interfaces/User';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
     const [firstName, setFirstName] = useState('');

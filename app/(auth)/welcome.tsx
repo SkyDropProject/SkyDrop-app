@@ -5,7 +5,7 @@ import LoginTab from '@/app/components/LoginTab';
 import { useAuth } from '@/app/providers/AuthProvider';
 const Welcome = (): ReactElement => {
     const [isInscription, setIsInscription] = useState<boolean>(false);
-    const { isSignedIn, signIn } = useAuth();
+    const { signIn } = useAuth();
 
 
     return isInscription ? (

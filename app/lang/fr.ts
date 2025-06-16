@@ -20,6 +20,16 @@ const fr: lang = {
     cart_title: 'Mon panier',
     article_title: 'Article',
     welcome: 'Bienvenue !',
+    details: 'Détails',
+    products: 'Produits',
+    searchForAProduct: "Rechercher un produit...",
+    addToCart: 'Ajouter au panier',
+    stars: "Nos vedettes",
+    location: 'Position',
+    orderTitle: 'Votre commande',
+    noCurrentOrder: "Vous n’avez aucune commande en cours",
+    YourCart: "Votre panier",
+    lastOrders: "Vos dernières commandes"
 };
 
 export { fr };

@@ -1,9 +1,10 @@
 import React, { Component, ReactElement } from 'react';
-import { Text } from 'react-native';
+
+import HomeTab from "@/app/components/HomeTab";
 
 class Home extends Component {
     render(): ReactElement {
-        return <Text>Home</Text>;
+        return <HomeTab/>;
     }
 }
 
