@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
+import {Dimensions, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useAlert } from '@/app/components/AlertContext';
@@ -46,6 +46,11 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
         showAlert("Une erreur s'est produite", 'warning');
     };
     return (
+        <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+        >
         <ScrollView style={styles.login}>
             <Image source={banner} style={styles.banner} />
             <View style={styles.viewUtil}>
@@ -57,12 +62,15 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
                         placeholder={'Adresse email'}
                         value={email}
                         onChangeText={setEmail}
+                        keyboardType={'email-address'}
+                        returnKeyType={"done"}
                     />
                     <InputField
                         secureTextEntry
                         placeholder={'Mot de passe'}
                         value={password}
                         onChangeText={setPassword}
+                        returnKeyType={"done"}
                     />
                 </View>
                 <View style={styles.buttonText}>
@@ -77,6 +85,7 @@ const LoginTab = (props: LoginTabProps): ReactElement => {
                 </View>
             </View>
         </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 

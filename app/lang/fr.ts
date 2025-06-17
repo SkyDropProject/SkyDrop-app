@@ -30,6 +30,17 @@ const fr: lang = {
     noCurrentOrder: 'Vous n’avez aucune commande en cours',
     YourCart: 'Votre panier',
     lastOrders: 'Vos dernières commandes',
+    orderedOn: "Commandé le ",
+    orderConfirmed: "Votre commande a bien été prise en compte",
+    noProductsCart: "Ajouter des produits à votre panier, ils apparaitront ici !",
+    toOrder: 'Commander',
+    delivery: 'Livraison',
+    orderSummary: 'Recapitulatif de ma commande :',
+    logIn: 'Connectez-vous',
+    askAccount: 'Vous avez un compte ?',
+    signUp: "S'inscrire",
+    confirmPassword: "Confirmer le mot de passe",
+    password: "Mot de passe",
 };
 
 export { fr };

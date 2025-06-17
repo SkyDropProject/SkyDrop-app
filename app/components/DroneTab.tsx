@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import {StyleSheet, View, Dimensions, ActivityIndicator, ScrollView} from 'react-native';
+import { StyleSheet, View, Dimensions, ActivityIndicator, ScrollView } from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -14,11 +14,13 @@ import { BodySize, TitleSize } from '@/app/utils/Typography';
 import BodyText from '@/app/components/BodyText';
 import ProductCartCard from '@/app/components/ProductCartCard';
 import { convertXYtoLatLng } from '@/app/utils/Geo';
+import {useIntl} from "react-intl";
 
 const DroneTab = (props: DroneTabProps): ReactElement => {
     const [targetPosition, setTargetPosition] = useState<GeoType>({ latitude: 0, longitude: 0 });
     const [loading, setLoading] = useState(false);
     const [drone, setDrone] = useState<DroneType | null>(null);
+    const intl = useIntl();
 
     const getDrones = async (): Promise<void> => {
         const response = await axios.get('/drone/' + props.order.droneId._id);
@@ -101,7 +103,7 @@ const DroneTab = (props: DroneTabProps): ReactElement => {
                     <Marker coordinate={drone.coordinates} title="Drone">
                         <Icon.drone_delivery height={50} width={50} />
                     </Marker>
-                    <Marker coordinate={targetPosition} title="Livraison" />
+                    <Marker coordinate={targetPosition} title={intl.formatMessage({id: "delivery"})} />
                     <Polyline
                         coordinates={[drone.coordinates, targetPosition]}
                         strokeColor="#386BF6"
@@ -123,7 +125,7 @@ const DroneTab = (props: DroneTabProps): ReactElement => {
                         ' fait de son mieux pour vous la livrer à temps.'
                     }
                 />
-                <BodyText size={BodySize.xlarge} text={'Recapitulatif de ma commande :'} />
+                <BodyText size={BodySize.xlarge} text={intl.formatMessage({id: "orderSummary"})} />
                 {props.order.products.map((product, index) => (
                     <ProductCartCard key={index} product={product} loading={false} disabled />
                 ))}

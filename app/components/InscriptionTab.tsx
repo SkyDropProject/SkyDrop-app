@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ReactElement, useState } from 'react';
-import { Dimensions, Image, ScrollView, StyleSheet, View } from 'react-native';
+import {Dimensions, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View} from 'react-native';
 
 import { useAlert } from '@/app/components/AlertContext';
 import BodyText from '@/app/components/BodyText';
@@ -14,6 +14,7 @@ import { BodySize, TitleSize } from '@/app/utils/Typography';
 import banner from '@/assets/images/banner.png';
 
 import { InscriptionUserPayload } from '../interfaces/User';
+import {useIntl} from "react-intl";
 
 const { width } = Dimensions.get('window');
 
@@ -27,6 +28,7 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
     const [phone, setPhone] = useState('');
 
     const { showAlert } = useAlert();
+    const intl = useIntl();
 
     const handleSubmit = async (): Promise<void> => {
         const [day, month, year] = date.split('/');
@@ -54,9 +56,14 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
         }
 
         props.onSubmit();
-        showAlert('Vous êtes bien inscrit. Vous pouvez désormais vous connecter.', 'success'); //TODO: don't work actually
+        showAlert('Vous êtes bien inscrit. Vous pouvez désormais vous connecter.', 'success');
     };
     return (
+        <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+        >
         <ScrollView style={styles.inscription}>
             <Image source={banner} style={styles.banner} />
             <View style={styles.viewUtil}>
@@ -70,12 +77,14 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
                             value={firstName}
                             onChangeText={setFirstName}
                             placeholder={'Prénom'}
+                            returnKeyType={"done"}
                         />
                         <InputField
                             small
                             value={lastName}
                             onChangeText={setLastName}
                             placeholder={'Nom'}
+                            returnKeyType={"done"}
                         />
                     </View>
                     <InputField
@@ -83,6 +92,7 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
                         value={email}
                         onChangeText={setEmail}
                         keyboardType={'email-address'}
+                        returnKeyType={"done"}
                     />
                     <DateInput placeholder={'Date de naissance'} value={date} onChange={setDate} />
                     <InputField
@@ -90,29 +100,33 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
                         onChangeText={setPhone}
                         placeholder={'Numéro de téléphone'}
                         keyboardType={'phone-pad'}
+                        returnKeyType={"done"}
                     />
                     <InputField
                         secureTextEntry
-                        placeholder={'Mot de passe'}
+                        placeholder={intl.formatMessage({id: "password"})}
                         value={password}
                         onChangeText={setPassword}
+                        returnKeyType={"done"}
                     />
                     <InputField
                         secureTextEntry
-                        placeholder={'Confirmer le mot de passe'}
+                        placeholder={intl.formatMessage({id : "confirmPassword"})}
                         value={confirmPassword}
                         onChangeText={setConfirmPassword}
+                        returnKeyType={"done"}
                     />
                     <View style={styles.buttonText}>
-                        <SubmitButton text={"S'inscrire"} onPress={handleSubmit} />
+                        <SubmitButton text={intl.formatMessage({id: "signUp"})} onPress={handleSubmit} />
                     </View>
                 </View>
                 <View style={styles.buttonText}>
-                    <BodyText size={BodySize.small} text={'Vous avez un compte ?'} />
-                    <LinkButton text={'Connectez-vous'} onPress={props.onPress} />
+                    <BodyText size={BodySize.small} text={intl.formatMessage({id: "askAccount"})} />
+                    <LinkButton text={intl.formatMessage({id : "logIn"})} onPress={props.onPress} />
                 </View>
             </View>
         </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 const styles = StyleSheet.create({

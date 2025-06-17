@@ -30,6 +30,17 @@ const en: lang = {
     noCurrentOrder: "You don't have any active orders",
     YourCart: 'Your cart',
     lastOrders: 'Your last orders',
+    orderedOn: "Ordered on ",
+    orderConfirmed: "Your order has been successfully received",
+    noProductsCart: "Your cart is empty",
+    toOrder: 'To order',
+    delivery: 'Delivery',
+    orderSummary: 'Order summary :',
+    logIn: 'Log in',
+    askAccount: 'Do you have an account?',
+    signUp: 'Sign up',
+    confirmPassword: 'Confirm password',
+    password: 'Password',
 };
 
 export { en };

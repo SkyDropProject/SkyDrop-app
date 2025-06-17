@@ -12,7 +12,7 @@ const AlertContext = createContext<AlertContextProps | undefined>(undefined);
 
 export const useAlert = (): AlertContextProps => {
     const context = useContext(AlertContext);
-    if (!context) throw new Error('useAlert must be used within AlertProvider');
+    if (!context) throw new Error('ERREUR !');
     return context;
 };
 

@@ -86,7 +86,7 @@ const OrderTab = (): ReactElement => {
                     <View key={order._id}>
                         <BodyText
                             size={BodySize.small}
-                            text={'Commandée le ' + formatDate(order.dateOrder) + ' :'}
+                            text={intl.formatMessage({id: "orderedOn"}) + formatDate(order.dateOrder) + ' :'}
                         />
                         {order.products.map((product, index2) => (
                             <ProductCartCard
@@ -97,8 +97,8 @@ const OrderTab = (): ReactElement => {
                             />
                         ))}
                         <View style={styles.priceOrder}>
-                            <BodyText size={BodySize.medium} text={"Total :"} />
-                            <BodyText size={BodySize.xlarge} text={order.price.toFixed(2) + " €"} />
+                            <BodyText size={BodySize.medium} text={'Total :'} />
+                            <BodyText size={BodySize.xlarge} text={order.price.toFixed(2) + ' €'} />
                         </View>
                     </View>
                 ))}
@@ -138,14 +138,14 @@ const styles = StyleSheet.create({
     pastOrder: {
         display: 'flex',
         flexDirection: 'column',
-        gap:30,
+        gap: 30,
     },
     priceOrder: {
         marginTop: 20,
         display: 'flex',
         flexDirection: 'row',
-        gap:5,
-    }
+        gap: 5,
+    },
 });
 
 export default OrderTab;
