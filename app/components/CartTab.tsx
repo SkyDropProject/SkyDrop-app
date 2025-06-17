@@ -15,6 +15,7 @@ import { useAlert } from '@/app/components/AlertContext';
 
 import BodyText from '@/app/components/BodyText';
 import SubmitButton from '@/app/components/SubmitButton';
+import {convertXYtoLatLng} from "@/app/utils/Geo";
 
 const CartTab = (): ReactElement => {
     const [products, setProducts] = useState<ProductType[]>([]);
@@ -79,13 +80,26 @@ const CartTab = (): ReactElement => {
         if (!totalItems) return;
         if (products.length === 0) return;
         const userId = await AsyncStorage.getItem('userId');
-        const coords = AsyncStorage.getItem('location');
+        const location = await AsyncStorage.getItem('location');
+        if (!location) {
+            showAlert('Aucune localisation trouvée', 'warning');
+            return;
+        }
+        const coords = convertXYtoLatLng(location);
+        const productsToSend: ProductType[] = [];
+        for (const product of products) {
+            for (let i = 0; i < (product.quantity || 1); i++) {
+                productsToSend.push(product);
+            }
+        }
+
         const payload = {
-            products: products,
+            products: productsToSend,
             price: totalPrice,
             coordinates: coords,
         };
         await axios.put('/order', payload);
+
         for (let product of products) {
             if (product.quantity === undefined) return;
             for (let i = 0; i < product.quantity; i++) {
@@ -121,25 +135,28 @@ const CartTab = (): ReactElement => {
                     loading={!!loadingQuantities[product._id]}
                 />
             ))}
-
-            <View style={styles.resumeSection}>
-                <View style={styles.resume}>
-                    <View style={styles.gapBetween}>
-                        <BodyText size={BodySize.medium} text={'Articles(' + totalItems + ')'} />
-                        <BodyText size={BodySize.medium} text={'Livraison'} />
-                        <BodyText size={BodySize.xlarge} text={'Total'} />
-                    </View>
-                    <View style={styles.gapBetween}>
-                        <BodyText size={BodySize.xlarge} text={totalPrice.toFixed(2) + ' €'} />
-                        <BodyText size={BodySize.xlarge} text={deliveryPrice.toFixed(2) + ' €'} />
-                        <BodyText
-                            size={BodySize.xlarge}
-                            text={(totalPrice + deliveryPrice).toFixed(2) + ' €'}
-                        />
-                    </View>
+            {products.length === 0 ? (
+                <BodyText size={BodySize.small} text={"Ajouter des produits à votre panier, ils apparaitront ici !"} />
+            ) : (
+                <View style={styles.resumeSection}>
+            <View style={styles.resume}>
+                <View style={styles.gapBetween}>
+                    <BodyText size={BodySize.medium} text={'Articles(' + totalItems + ')'} />
+                    <BodyText size={BodySize.medium} text={'Livraison'} />
+                    <BodyText size={BodySize.xlarge} text={'Total'} />
                 </View>
-                <SubmitButton text={'Commander'} onPress={handleOrder} />
+                <View style={styles.gapBetween}>
+                    <BodyText size={BodySize.xlarge} text={totalPrice.toFixed(2) + ' €'} />
+                    <BodyText size={BodySize.xlarge} text={deliveryPrice.toFixed(2) + ' €'} />
+                    <BodyText
+                        size={BodySize.xlarge}
+                        text={(totalPrice + deliveryPrice).toFixed(2) + ' €'}
+                    />
+                </View>
             </View>
+            <SubmitButton text={'Commander'} onPress={handleOrder} />
+        </View>
+                )}
         </View>
     );
 };

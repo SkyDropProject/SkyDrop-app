@@ -14,6 +14,7 @@ import { OrderType } from '@/app/interfaces/Order';
 import ProductCartCard from '@/app/components/ProductCartCard';
 import CurrentOrderIndicator from '@/app/components/CurrentOrderIndicator';
 import DroneTab from '@/app/components/DroneTab';
+import formatDate from '@/app/utils/DateFormat';
 
 const OrderTab = (): ReactElement => {
     const intl = useIntl();
@@ -80,21 +81,25 @@ const OrderTab = (): ReactElement => {
             <View>
                 <BodyText size={BodySize.xlarge} text={intl.formatMessage({ id: 'lastOrders' })} />
             </View>
-            <View>
+            <View style={styles.pastOrder}>
                 {orders.map((order, index) => (
-                    <View key={order._id || index}>
+                    <View key={order._id}>
                         <BodyText
                             size={BodySize.small}
-                            text={intl.formatMessage({ id: 'orderNumber' }, { number: order._id })}
+                            text={'Commandée le ' + formatDate(order.dateOrder) + ' :'}
                         />
                         {order.products.map((product, index2) => (
                             <ProductCartCard
-                                key={product._id || index2}
+                                key={index2}
                                 product={product}
                                 loading={false}
                                 disabled
                             />
                         ))}
+                        <View style={styles.priceOrder}>
+                            <BodyText size={BodySize.medium} text={"Total :"} />
+                            <BodyText size={BodySize.xlarge} text={order.price.toFixed(2) + " €"} />
+                        </View>
                     </View>
                 ))}
             </View>
@@ -130,6 +135,17 @@ const styles = StyleSheet.create({
         gap: 20,
         width: '100%',
     },
+    pastOrder: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap:30,
+    },
+    priceOrder: {
+        marginTop: 20,
+        display: 'flex',
+        flexDirection: 'row',
+        gap:5,
+    }
 });
 
 export default OrderTab;

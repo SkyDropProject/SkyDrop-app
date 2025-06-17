@@ -15,7 +15,6 @@ export default function RootLayout(): ReactElement {
                 <Alert />
                 <AppProviders>
                     <View style={styles.container}>
-                        <Alert />
                         <Stack>
                             <Stack.Screen name="index" options={{ headerShown: false }} />
                             <Stack.Screen name="(auth)" options={{ headerShown: false }} />

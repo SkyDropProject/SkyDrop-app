@@ -21,7 +21,7 @@ export const AlertProvider = ({ children }: { children: ReactNode }): ReactEleme
 
     const showAlert = (message: string, type: AlertType = 'info'): void => {
         setAlert({ message, type });
-        setTimeout(() => setAlert(null), 3000); // Disparait après 3s
+        setTimeout(() => setAlert(null), 3000);
     };
 
     const hideAlert = (): void => setAlert(null);

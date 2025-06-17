@@ -7,7 +7,7 @@ interface OrderType {
     _id?: string;
     userId: User | string;
     droneId: DroneType;
-    dateOrder: Date;
+    dateOrder: string;
     status: string;
     products: ProductType[];
     deliveryCoordinates: GeoType;
