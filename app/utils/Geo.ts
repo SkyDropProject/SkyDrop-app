@@ -1,3 +1,5 @@
+import { GeoType } from '@/app/interfaces/GeoType';
+
 export async function getAddressFromCoords(latitude: number, longitude: number): Promise<string> {
     try {
         const response = await fetch(
@@ -19,3 +21,8 @@ export async function getAddressFromCoords(latitude: number, longitude: number):
         return 'Adresse inconnue';
     }
 }
+
+export const convertXYtoLatLng = (coords: { x: number; y: number }): GeoType => ({
+    latitude: coords.x,
+    longitude: coords.y,
+});

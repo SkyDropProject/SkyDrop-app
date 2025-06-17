@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { StyleSheet, View, Dimensions, ActivityIndicator } from 'react-native';
+import {StyleSheet, View, Dimensions, ActivityIndicator, ScrollView} from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,15 +9,17 @@ import { GeoType } from '@/app/interfaces/GeoType';
 import { DroneType } from '@/app/interfaces/Drone';
 import { DroneTabProps } from '@/app/interfaces/component';
 import StatusBars from '@/app/components/StatusBars';
+import TitleText from '@/app/components/TitleText';
+import { BodySize, TitleSize } from '@/app/utils/Typography';
+import BodyText from '@/app/components/BodyText';
+import ProductCartCard from '@/app/components/ProductCartCard';
+import { convertXYtoLatLng } from '@/app/utils/Geo';
 
 const DroneTab = (props: DroneTabProps): ReactElement => {
     const [targetPosition, setTargetPosition] = useState<GeoType>({ latitude: 0, longitude: 0 });
     const [loading, setLoading] = useState(false);
     const [drone, setDrone] = useState<DroneType | null>(null);
-    const convertXYtoLatLng = (coords: { x: number; y: number }): GeoType => ({
-        latitude: coords.x,
-        longitude: coords.y,
-    });
+
     const getDrones = async (): Promise<void> => {
         const response = await axios.get('/drone/' + props.order.droneId._id);
         if (response.status === 200) {
@@ -49,7 +51,7 @@ const DroneTab = (props: DroneTabProps): ReactElement => {
         switch (status) {
             case 'waiting':
                 return 0;
-            case 'ready':
+            case 'delivering':
                 return 1;
             case 'pending':
                 return 2;
@@ -107,9 +109,25 @@ const DroneTab = (props: DroneTabProps): ReactElement => {
                     />
                 </MapView>
             </View>
-            <View style={styles.informations}>
+            <ScrollView style={styles.informations}>
                 <StatusBars status={getStatusIndex(drone.status)} />
-            </View>
+                <TitleText
+                    size={TitleSize.h2}
+                    text={'Commande n°' + props.order._id + ' en cours de livraison'}
+                />
+                <BodyText
+                    size={BodySize.small}
+                    text={
+                        'Votre commande est en cours d’acheminement, ' +
+                        drone.name +
+                        ' fait de son mieux pour vous la livrer à temps.'
+                    }
+                />
+                <BodyText size={BodySize.xlarge} text={'Recapitulatif de ma commande :'} />
+                {props.order.products.map((product, index) => (
+                    <ProductCartCard key={index} product={product} loading={false} disabled />
+                ))}
+            </ScrollView>
         </View>
     );
 };
