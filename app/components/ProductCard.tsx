@@ -1,45 +1,37 @@
-import axios from 'axios';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import BodyText from '@/app/components/BodyText';
 import LikeButton from '@/app/components/LikeButton';
 import { ProductType } from '@/app/interfaces/Product';
 import { BodySize } from '@/app/utils/Typography';
+import { API_URL } from '@/app/utils/Api';
 
-const ProductCard = ({ product }: { product: ProductType }): ReactElement => {
+const ProductCard = ({
+    product,
+    onPress,
+}: {
+    product: ProductType;
+    onPress: () => void;
+}): ReactElement => {
     const [isLiked, setIsLiked] = useState(false);
-    const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
     const toggleLike = (): void => {
         setIsLiked(!isLiked);
     };
 
-    useEffect(() => {
-        let objectUrl: string | undefined;
-        const fetchImg = async (): Promise<void> => {
-            try {
-                const response = await axios.get('/uploads/' + product.imageUrl);
-                objectUrl = response.request.responseURL;
-                setImageUrl(objectUrl);
-            } catch {
-                setImageUrl(undefined);
-            }
-        };
-        fetchImg();
-        return (): void => {
-            if (objectUrl) URL.revokeObjectURL(objectUrl);
-        };
-    }, [product.imageUrl]);
-
     return (
-        <TouchableOpacity style={styles.ProductCard} activeOpacity={0.8}>
+        <TouchableOpacity style={styles.ProductCard} activeOpacity={0.8} onPress={onPress}>
             <View style={styles.likeButton}>
                 <LikeButton isLiked={isLiked} onPress={toggleLike} />
             </View>
             <View>
                 <View style={styles.containerimage}>
-                    <Image style={styles.image} source={{ uri: imageUrl }} />
+                    <Image
+                        style={styles.image}
+                        source={{ uri: API_URL + '/uploads/' + product.imageUrl }}
+                        resizeMode="contain"
+                    />
                 </View>
                 <View style={styles.info}>
                     <BodyText text={product.name} size={BodySize.xlarge} />

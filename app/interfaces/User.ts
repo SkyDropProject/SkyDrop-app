@@ -11,7 +11,7 @@ interface InscriptionUserPayload extends UserCoreData {
     confirmPassword: string;
 }
 interface User extends UserCoreData {
-    _id?: string;
+    _id: string;
     registrationDate: Date;
     verificationDate?: Date;
     address: string;

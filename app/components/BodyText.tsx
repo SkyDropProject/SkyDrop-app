@@ -8,22 +8,22 @@ const BodyText = (props: BodyProps): ReactElement => {
 
 const styles = StyleSheet.create({
     small: {
-        fontFamily: 'Inter',
+        fontFamily: 'inter',
         fontWeight: 'light',
         fontSize: 12,
     },
     medium: {
-        fontFamily: 'Inter',
+        fontFamily: 'inter',
         fontWeight: 'regular',
         fontSize: 16,
     },
     large: {
-        fontFamily: 'Inter',
+        fontFamily: 'inter',
         fontWeight: 'regular',
         fontSize: 18,
     },
     xlarge: {
-        fontFamily: 'Inter',
+        fontFamily: 'inter',
         fontWeight: 'bold',
         fontSize: 16,
     },

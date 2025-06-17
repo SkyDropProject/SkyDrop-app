@@ -1,22 +1,25 @@
-import {router, Stack} from 'expo-router';
-import {ReactElement, useEffect} from 'react';
-import {useAuth} from "@/app/providers/AuthProvider";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router, Stack } from 'expo-router';
+import { ReactElement, useEffect } from 'react';
+
+import { useAuth } from '@/app/providers/AuthProvider';
+
+import { ProductModalProvider } from '../providers/ProductModalProvider';
 
 const Layout = (): ReactElement => {
     const { isSignedIn } = useAuth();
 
     useEffect(() => {
-        if(!isSignedIn) {
+        if (!isSignedIn) {
             router.push('/(auth)/welcome');
         }
-    }, []);
-
+    }, [isSignedIn]);
 
     return (
-        <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <ProductModalProvider>
+            <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
+        </ProductModalProvider>
     );
 };
 

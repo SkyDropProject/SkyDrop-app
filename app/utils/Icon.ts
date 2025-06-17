@@ -4,7 +4,6 @@ import hover_drone_nav from '@/assets/icons/navbar/hover_order.svg';
 import hover_profile from '@/assets/icons/navbar/hover_profile.svg';
 import hover_catalog from '@/assets/icons/navbar/hover_search.svg';
 import drone_nav from '@/assets/icons/navbar/order.svg';
-import search from '@/assets/icons/navbar/search.svg';
 import add from '@/assets/svg/Add.svg';
 import alcoolSvg from '@/assets/svg/alcool.svg';
 import arrow_right from '@/assets/svg/arrow_right.svg';
@@ -36,12 +35,15 @@ import profile from '@/assets/svg/Profile.svg';
 import snackSvg from '@/assets/svg/snack.svg';
 import success from '@/assets/svg/success.svg';
 import warning from '@/assets/svg/warning.svg';
+import search from '@/assets/svg/Search.svg';
+import arrow_bottom from '@/assets/svg/arrow_bottom.svg';
+import drone_delivery from '@/assets/svg/drone_delivery.svg';
 
 const Icon = Object.freeze({
-    alcool: alcoolSvg,
-    boisson: boissonSvg,
+    alcools: alcoolSvg,
+    boissons: boissonSvg,
     divers: diversSvg,
-    snack: snackSvg,
+    snacks: snackSvg,
     coca: cocaSvg,
     cart: cart,
     cart_selected: cart_selected,
@@ -54,6 +56,7 @@ const Icon = Object.freeze({
     drone: drone,
     drone_selected: drone_selected,
     arrow_right: arrow_right,
+    arrow_bottom: arrow_bottom,
     lock: lock,
     logout: logout,
     megaphone: megaphone,
@@ -65,7 +68,6 @@ const Icon = Object.freeze({
     heart_filled: heart_filled,
     cross: cross,
     calendar: calendar,
-    search: search,
     hover_catalog: hover_catalog,
     hover_cart: hover_cart,
     hover_home: hover_home,
@@ -76,6 +78,8 @@ const Icon = Object.freeze({
     success: success,
     warning: warning,
     info: info,
+    search: search,
+    drone_delivery: drone_delivery,
 });
 
 export default Icon;

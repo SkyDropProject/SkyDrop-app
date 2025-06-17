@@ -21,7 +21,7 @@ const Alert = (): ReactElement | null => {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        top: 20,
+        top: 50,
         right: 20,
         borderRadius: 10,
         padding: 20,

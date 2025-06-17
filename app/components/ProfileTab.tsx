@@ -1,16 +1,15 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import axios from 'axios';
 
-import Account from '@/app/components/Account';
-import IconButton from '@/app/components/IconButton';
-import TitleText from '@/app/components/TitleText';
-import {User} from '@/app/interfaces/User';
 import { useAuth } from '@/app/providers/AuthProvider';
 import Icon from '@/app/utils/Icon';
 import { TitleSize } from '@/app/utils/Typography';
-import axios from "axios";
-import { ActivityIndicator } from 'react-native';
+import Account from '@/app/components/Account';
+import IconButton from '@/app/components/IconButton';
+import TitleText from '@/app/components/TitleText';
+import { User } from '@/app/interfaces/User';
 
 const ProfileTab = (): ReactElement => {
     const intl = useIntl();
@@ -31,19 +30,17 @@ const ProfileTab = (): ReactElement => {
         zip: '',
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
     });
     const [isLoading, setIsLoading] = useState(true);
-
 
     useEffect(() => {
         const initUser = async (): Promise<void> => {
             try {
-                const response = await axios.get("/user/me");
+                const response = await axios.get('/user/me');
                 if (response.status === 200) {
                     setUser(response.data);
                 }
-            } catch (e) {
             } finally {
                 setIsLoading(false);
             }
@@ -53,6 +50,9 @@ const ProfileTab = (): ReactElement => {
 
     if (isLoading) {
         return <ActivityIndicator />;
+    }
+    if (user === undefined) {
+        return <Text> Erreur avec le serveur</Text>;
     }
     return (
         <View style={styles.profilemenu}>
@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        marginTop: 30,
+        padding: 30,
         width: '100%',
         height: '100%',
     },
@@ -109,9 +111,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: '85%',
-        paddingHorizontal: 15,
-        marginTop: 5,
+        width: '100%',
     },
 });
 export default ProfileTab;

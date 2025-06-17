@@ -20,6 +20,16 @@ const en: lang = {
     cart_title: 'My cart',
     article_title: 'items',
     welcome: 'Welcome !',
+    details: 'Details',
+    products: 'Products',
+    searchForAProduct: 'Search a product...',
+    addToCart: 'Add to cart',
+    stars: 'Our Stars',
+    location: 'Location',
+    orderTitle: 'Your Order',
+    noCurrentOrder: "You don't have any active orders",
+    YourCart: 'Your cart',
+    lastOrders: 'Your last orders',
 };
 
 export { en };

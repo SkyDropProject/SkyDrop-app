@@ -1,6 +1,7 @@
 import { ProductType } from '@/app/interfaces/Product';
 import Icon from '@/app/utils/Icon';
 import { BodySize, TitleSize } from '@/app/utils/Typography';
+import { OrderType } from '@/app/interfaces/Order';
 
 interface inputProps {
     placeholder?: string;
@@ -22,6 +23,7 @@ interface SubmitButtonProps {
 interface CategoryButtonProps {
     icon: (typeof Icon)[keyof typeof Icon];
     text?: string;
+    onPress: () => void;
 }
 
 interface MenuBarProps {
@@ -53,6 +55,7 @@ interface BodyProps {
 interface QuantityButtonProps {
     icon: (typeof Icon)[keyof typeof Icon];
     onPress: () => void;
+    disabled?: boolean;
 }
 
 interface LikeButtonProps {
@@ -63,10 +66,13 @@ interface LikeButtonProps {
 interface QuantityComponentProps {
     quantity: number;
     setQuantity: (quantity: number) => void;
+    loading: boolean;
+    min?: number;
 }
 
 interface ProductDetailProps {
     product: ProductType;
+    onClose: () => void;
 }
 
 interface LinkButtonProps {
@@ -92,6 +98,58 @@ interface InscriptionTabProps {
     onSubmit: () => void;
 }
 
+interface SearchBarProps {
+    placeholder?: string;
+    onChangeText?: (text: string) => void;
+    value?: string;
+}
+
+interface ProductCartCardProps {
+    product: ProductType & { quantity?: number };
+    onIncrease?: (productId: string) => void;
+    onDecrease?: (productId: string) => void;
+    loading: boolean;
+    disabled?: boolean;
+}
+
+interface MapPickerProps {
+    onClose: () => void;
+    onOpen?: () => void;
+}
+
+interface inputProps {
+    placeholder?: string;
+    value: string;
+    onChangeText: (text: string) => void;
+    error?: string;
+    disabled?: boolean;
+    small?: boolean;
+    secureTextEntry?: boolean;
+    keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'number-pad';
+    mode?: 'text' | 'date';
+    onSubmitEditing?: () => void;
+    returnKeyType?: 'done' | 'go' | 'next' | 'search' | 'send';
+}
+
+interface DeliveryPositionPickerProps {
+    position: string;
+    onPress: () => void;
+}
+
+interface DroneTabProps {
+    order: OrderType;
+    visible: boolean;
+}
+
+interface StatusBarsProps {
+    status: 0 | 1 | 2;
+}
+interface AnimatedBarsProps {
+    active: boolean;
+}
+interface CurrentOrderIndicatorProps {
+    onPress: () => void;
+}
 export {
     inputProps,
     SubmitButtonProps,
@@ -109,4 +167,12 @@ export {
     DateInputProps,
     LoginTabProps,
     InscriptionTabProps,
+    SearchBarProps,
+    ProductCartCardProps,
+    MapPickerProps,
+    DeliveryPositionPickerProps,
+    DroneTabProps,
+    StatusBarsProps,
+    AnimatedBarsProps,
+    CurrentOrderIndicatorProps,
 };

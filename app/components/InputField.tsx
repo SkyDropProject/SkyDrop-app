@@ -20,6 +20,8 @@ const InputField = (props: inputProps): ReactElement => {
                 secureTextEntry={props.secureTextEntry}
                 keyboardType={props.keyboardType}
                 placeholderTextColor={'#8F9098'}
+                onSubmitEditing={props.onSubmitEditing}
+                returnKeyType={props.returnKeyType}
             />
             {props.error && <Text style={styles.errorText}>{props.error}</Text>}
         </View>

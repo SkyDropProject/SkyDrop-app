@@ -3,25 +3,55 @@ import { Dimensions, Image, StyleSheet, View } from 'react-native';
 
 import BodyText from '@/app/components/BodyText';
 import QuantityComponent from '@/app/components/QuantityComponent';
-import { ProductType } from '@/app/interfaces/Product';
 import { BodySize } from '@/app/utils/Typography';
+import { API_URL } from '@/app/utils/Api';
+import { ProductCartCardProps } from '@/app/interfaces/component';
 
 const { width } = Dimensions.get('window');
 
-const ProductCartCard = ({ product }: { product: ProductType }): ReactElement => {
+const ProductCartCard = ({
+    product,
+    onIncrease,
+    onDecrease,
+    loading,
+    disabled,
+}: ProductCartCardProps): ReactElement => {
     const [price, setPrice] = useState('');
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(product.quantity || 1);
     useEffect(() => {
         setPrice(product.price + ' €');
     }, [product]);
+
     return (
         <View style={styles.productCard}>
-            <Image style={styles.image} source={{ uri: product.imageUrl }} />
+            <Image
+                source={{ uri: API_URL + '/uploads/' + product.imageUrl }}
+                style={styles.image}
+            />
             <View style={styles.info}>
                 <BodyText text={product.name} size={BodySize.xlarge} />
                 <BodyText text={product.description} size={BodySize.small} />
                 <View style={styles.last_row}>
-                    <QuantityComponent quantity={quantity} setQuantity={setQuantity} />
+                    {!disabled ? (
+                        <QuantityComponent
+                            quantity={quantity}
+                            setQuantity={(newQuantity) => {
+                                if (newQuantity > quantity) {
+                                    setQuantity(newQuantity);
+                                    if (onIncrease) {
+                                        onIncrease(product._id);
+                                    }
+                                } else if (newQuantity < quantity) {
+                                    setQuantity(newQuantity);
+                                    if (onDecrease) {
+                                        onDecrease(product._id);
+                                    }
+                                }
+                            }}
+                            loading={loading}
+                            min={0}
+                        />
+                    ) : null}
                     <View>
                         <BodyText size={BodySize.xlarge} text={price} />
                     </View>
@@ -40,14 +70,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 16,
         paddingVertical: 10,
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         height: 110,
         width: width * 0.85,
         marginTop: 10,
     },
     image: {
         height: '100%',
-        width: 100,
+        width: 90,
+        borderRadius: 16,
+        marginHorizontal: 20,
     },
     info: {
         display: 'flex',

@@ -1,10 +1,9 @@
-import {router, Tabs} from 'expo-router';
-import {ReactElement, useEffect} from 'react';
+import { Tabs } from 'expo-router';
+import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 import { Text, View } from 'react-native';
 
 import Icon from '@/app/utils/Icon';
-import {useAuth} from "@/app/providers/AuthProvider";
 
 const TabIcon = ({
     Icon,
@@ -38,6 +37,8 @@ const TabIcon = ({
                     textAlign: 'center',
                     fontWeight: 'bold',
                     opacity: focused ? 1 : 0,
+                    flexShrink: 1,
+                    minWidth: 0,
                 }}
             >
                 {label}
@@ -124,7 +125,7 @@ export default function Layout(): ReactElement {
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <TabIcon
-                            Icon={focused ? Icon.hover_profile : Icon.profile}
+                            Icon={focused ? Icon.hover_profile : Icon.profile_menu}
                             focused={focused}
                             label="Profile"
                         />

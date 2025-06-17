@@ -1,9 +1,10 @@
 import React, { Component, ReactElement } from 'react';
-import { Text } from 'react-native';
+
+import OrderTab from '@/app/components/OrderTab';
 
 class Order extends Component {
     render(): ReactElement {
-        return <Text>Order</Text>;
+        return <OrderTab />;
     }
 }
 

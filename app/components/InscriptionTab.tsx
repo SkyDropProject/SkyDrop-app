@@ -15,7 +15,7 @@ import banner from '@/assets/images/banner.png';
 
 import { InscriptionUserPayload } from '../interfaces/User';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
     const [firstName, setFirstName] = useState('');
@@ -84,11 +84,7 @@ const InscriptionTab = (props: InscriptionTabProps): ReactElement => {
                         onChangeText={setEmail}
                         keyboardType={'email-address'}
                     />
-                    <DateInput
-                        placeholder={'Date de naissance'}
-                        value={date}
-                        onChange={setDate}
-                    />
+                    <DateInput placeholder={'Date de naissance'} value={date} onChange={setDate} />
                     <InputField
                         value={phone}
                         onChangeText={setPhone}
