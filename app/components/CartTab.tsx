@@ -1,10 +1,10 @@
-import { ReactElement, useState, useCallback } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
-import { useIntl } from 'react-intl';
-import { StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 import { router } from 'expo-router';
+import { ReactElement, useCallback, useState } from 'react';
+import { useIntl } from 'react-intl';
+import { StyleSheet, View } from 'react-native';
 
 import ProductCartCard from '@/app/components/ProductCartCard';
 import TitleText from '@/app/components/TitleText';
@@ -88,6 +88,7 @@ const CartTab = (): ReactElement => {
         }
         const locationObj = JSON.parse(locationStr);
         const coords = convertXYtoLatLng(locationObj);
+        console.log('Coordinates:', coords, locationObj, locationStr);
         const productsToSend: string[] = [];
         for (const product of products) {
             for (let i = 0; i < (product.quantity || 1); i++) {
@@ -98,8 +99,9 @@ const CartTab = (): ReactElement => {
         const payload = {
             products: productsToSend,
             price: totalPrice,
-            coordinates: coords,
+            coordinates: locationObj,
         };
+        console.log('Order payload:', payload);
         await axios.put('/order', payload);
 
         showAlert(intl.formatMessage({id : "orderConfirmed"}), 'success');
