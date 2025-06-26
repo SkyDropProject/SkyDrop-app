@@ -28,10 +28,11 @@ const CartTab = (): ReactElement => {
         (sum, product) => sum + (product.price || 0) * (product.quantity || 1),
         0
     );
+    const totalWeight = products.reduce((sum,product) => sum + (product.quantity || 1 ) *  product.weight,0);
     const deliveryPrice = 0.5;
     const initProducts = async (): Promise<void> => {
         const userId = await AsyncStorage.getItem('userId');
-        const response = await axios.get('/user/cart/' + userId);
+        const response = await axios.get('/user/cart');
 
         if (response.status === 200) {
             const productIds: string[] = response.data;
@@ -80,16 +81,17 @@ const CartTab = (): ReactElement => {
         if (!totalItems) return;
         if (products.length === 0) return;
         const userId = await AsyncStorage.getItem('userId');
-        const location = await AsyncStorage.getItem('location');
-        if (!location) {
+        const locationStr = await AsyncStorage.getItem('location');
+        if (!locationStr) {
             showAlert('Aucune localisation trouvée', 'warning');
             return;
         }
-        const coords = convertXYtoLatLng(location);
-        const productsToSend: ProductType[] = [];
+        const locationObj = JSON.parse(locationStr);
+        const coords = convertXYtoLatLng(locationObj);
+        const productsToSend: string[] = [];
         for (const product of products) {
             for (let i = 0; i < (product.quantity || 1); i++) {
-                productsToSend.push(product);
+                productsToSend.push(product._id);
             }
         }
 
@@ -100,12 +102,6 @@ const CartTab = (): ReactElement => {
         };
         await axios.put('/order', payload);
 
-        for (const product of products) {
-            if (product.quantity === undefined) return;
-            for (let i = 0; i < product.quantity; i++) {
-                await axios.post('/user/cart', { _id: userId, productId: product._id });
-            }
-        }
         showAlert(intl.formatMessage({id : "orderConfirmed"}), 'success');
         await initProducts();
         router.push('/(root)/(tabs)/order');
@@ -141,29 +137,35 @@ const CartTab = (): ReactElement => {
                     text={intl.formatMessage({id : "noProductsCart"})}
                 />
             ) : (
-                <View style={styles.resumeSection}>
-                    <View style={styles.resume}>
-                        <View style={styles.gapBetween}>
-                            <BodyText
-                                size={BodySize.medium}
-                                text={'Articles(' + totalItems + ')'}
-                            />
-                            <BodyText size={BodySize.medium} text={intl.formatMessage({id: "delivery"})} />
-                            <BodyText size={BodySize.xlarge} text={'Total'} />
-                        </View>
-                        <View style={styles.gapBetween}>
-                            <BodyText size={BodySize.xlarge} text={totalPrice.toFixed(2) + ' €'} />
-                            <BodyText
-                                size={BodySize.xlarge}
-                                text={deliveryPrice.toFixed(2) + ' €'}
-                            />
-                            <BodyText
-                                size={BodySize.xlarge}
-                                text={(totalPrice + deliveryPrice).toFixed(2) + ' €'}
-                            />
-                        </View>
+                <View style={styles.infoSection}>
+                    <View style={styles.weightSection}>
+                        <BodyText size={BodySize.small} text={intl.formatMessage({id: "weightTotal"})} />
+                        <BodyText size={BodySize.xlarge} text={totalWeight + " g"} />
                     </View>
-                    <SubmitButton text={intl.formatMessage({id: "toOrder"})} onPress={handleOrder} />
+                    <View style={styles.resumeSection}>
+                        <View style={styles.resume}>
+                            <View style={styles.gapBetween}>
+                                <BodyText
+                                    size={BodySize.medium}
+                                    text={'Articles(' + totalItems + ')'}
+                                />
+                                <BodyText size={BodySize.medium} text={intl.formatMessage({id: "delivery"})} />
+                                <BodyText size={BodySize.xlarge} text={'Total'} />
+                            </View>
+                            <View style={styles.gapBetween}>
+                                <BodyText size={BodySize.xlarge} text={totalPrice.toFixed(2) + ' €'} />
+                                <BodyText
+                                    size={BodySize.xlarge}
+                                    text={deliveryPrice.toFixed(2) + ' €'}
+                                />
+                                <BodyText
+                                    size={BodySize.xlarge}
+                                    text={(totalPrice + deliveryPrice).toFixed(2) + ' €'}
+                                />
+                            </View>
+                        </View>
+                        <SubmitButton text={intl.formatMessage({id: "toOrder"})} onPress={handleOrder} disabled={totalWeight >= 3000} />
+                    </View>
                 </View>
             )}
         </View>
@@ -187,12 +189,17 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
     },
-    resumeSection: {
+    infoSection:{
         position: 'absolute',
+        display: 'flex',
+        flexDirection: 'column',
         bottom: 80,
+        gap:20,
+        width: '100%',
+    },
+    resumeSection: {
         borderRadius: 16,
         padding: 15,
-        width: '100%',
         backgroundColor: 'white',
         display: 'flex',
         flexDirection: 'column',
@@ -208,5 +215,13 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         gap: 10,
     },
+    weightSection:{
+        display: 'flex',
+        flexDirection: 'row',
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 10,
+    }
 });
 export default CartTab;

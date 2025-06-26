@@ -38,6 +38,8 @@ import warning from '@/assets/svg/warning.svg';
 import search from '@/assets/svg/Search.svg';
 import arrow_bottom from '@/assets/svg/arrow_bottom.svg';
 import drone_delivery from '@/assets/svg/drone_delivery.svg';
+import order_cancel from '@/assets/svg/order_cancel.svg';
+import order_success from '@/assets/svg/order_success.svg';
 
 const Icon = Object.freeze({
     alcools: alcoolSvg,
@@ -80,6 +82,8 @@ const Icon = Object.freeze({
     info: info,
     search: search,
     drone_delivery: drone_delivery,
+    order_success: order_success,
+    order_cancel: order_cancel,
 });
 
 export default Icon;

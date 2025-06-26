@@ -18,6 +18,7 @@ interface inputProps {
 interface SubmitButtonProps {
     text: string;
     onPress: () => void;
+    disabled?: boolean;
 }
 
 interface CategoryButtonProps {
@@ -139,16 +140,18 @@ interface DeliveryPositionPickerProps {
 interface DroneTabProps {
     order: OrderType;
     visible: boolean;
+    onBack?: () => void;
 }
 
 interface StatusBarsProps {
-    status: 0 | 1 | 2;
+    status: 0 | 1 | 2 | 3;
 }
 interface AnimatedBarsProps {
     active: boolean;
 }
-interface CurrentOrderIndicatorProps {
-    onPress: () => void;
+
+interface OrderFinalStatusProps {
+    status: 0 | 1;
 }
 export {
     inputProps,
@@ -174,5 +177,5 @@ export {
     DroneTabProps,
     StatusBarsProps,
     AnimatedBarsProps,
-    CurrentOrderIndicatorProps,
+    OrderFinalStatusProps
 };

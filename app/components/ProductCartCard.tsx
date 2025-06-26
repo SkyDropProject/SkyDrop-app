@@ -50,6 +50,7 @@ const ProductCartCard = ({
                             }}
                             loading={loading}
                             min={0}
+                            disabled={disabled}
                         />
                     ) : null}
                     <View>

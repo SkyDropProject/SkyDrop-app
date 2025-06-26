@@ -12,7 +12,6 @@ import BodyText from '@/app/components/BodyText';
 import SubmitButton from '@/app/components/SubmitButton';
 import { OrderType } from '@/app/interfaces/Order';
 import ProductCartCard from '@/app/components/ProductCartCard';
-import CurrentOrderIndicator from '@/app/components/CurrentOrderIndicator';
 import DroneTab from '@/app/components/DroneTab';
 import formatDate from '@/app/utils/DateFormat';
 
@@ -40,6 +39,10 @@ const OrderTab = (): ReactElement => {
         router.push('/(root)/(tabs)/cart');
     };
 
+    const handleBackFromDroneTab = () => {
+        setSelectedOrder(null);
+    };
+
     useFocusEffect(
         useCallback(() => {
             getOrders();
@@ -47,7 +50,7 @@ const OrderTab = (): ReactElement => {
     );
 
     return selectedOrder ? (
-        <DroneTab order={selectedOrder} visible={isDroneTabVisible} />
+        <DroneTab order={selectedOrder} visible={isDroneTabVisible} onBack={handleBackFromDroneTab} />
     ) : (
         <ScrollView contentContainerStyle={styles.OrderTab}>
             <TitleText size={TitleSize.h2} text={intl.formatMessage({ id: 'orderTitle' })} />
@@ -67,11 +70,13 @@ const OrderTab = (): ReactElement => {
                     <>
                         {currentOrders?.map((order, index) => (
                             <View key={order._id || index}>
-                                <CurrentOrderIndicator
+                                <SubmitButton
+                                    text={"Ma commande en cours"}
                                     onPress={() => {
                                         setSelectedOrder(order);
                                         modalizeRef.current?.open();
                                     }}
+                                    animated
                                 />
                             </View>
                         ))}
@@ -81,7 +86,7 @@ const OrderTab = (): ReactElement => {
             <View>
                 <BodyText size={BodySize.xlarge} text={intl.formatMessage({ id: 'lastOrders' })} />
             </View>
-            <View style={styles.pastOrder}>
+            <ScrollView style={styles.pastOrder}>
                 {orders.map((order, index) => (
                     <View key={order._id}>
                         <BodyText
@@ -102,7 +107,7 @@ const OrderTab = (): ReactElement => {
                         </View>
                     </View>
                 ))}
-            </View>
+            </ScrollView>
             <Modalize
                 ref={modalizeRef}
                 adjustToContentHeight

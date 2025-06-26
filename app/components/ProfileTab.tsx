@@ -14,7 +14,7 @@ import { User } from '@/app/interfaces/User';
 const ProfileTab = (): ReactElement => {
     const intl = useIntl();
     const { signOut } = useAuth();
-    const [user, setUser] = useState<User | undefined>({
+    const [user, setUser] = useState({
         birthdate: new Date(),
         _id: '',
         accountType: '',
@@ -31,6 +31,7 @@ const ProfileTab = (): ReactElement => {
         firstName: '',
         lastName: '',
         email: '',
+        fullName: '',
     });
     const [isLoading, setIsLoading] = useState(true);
 
@@ -39,7 +40,7 @@ const ProfileTab = (): ReactElement => {
             try {
                 const response = await axios.get('/user/me');
                 if (response.status === 200) {
-                    setUser(response.data);
+                    setUser(response.data.user);
                 }
             } finally {
                 setIsLoading(false);
@@ -60,7 +61,7 @@ const ProfileTab = (): ReactElement => {
                 <TitleText size={TitleSize.h2} text={intl.formatMessage({ id: 'account_title' })} />
             </View>
             <View style={styles.account}>
-                <Account name={user.firstName + ' ' + user.lastName} email={user.email} />
+                <Account name={user.fullName} email={user.email} />
             </View>
             <View style={styles.buttons}>
                 <IconButton

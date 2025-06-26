@@ -8,7 +8,7 @@ const StatusBars = ({ status }: StatusBarsProps): ReactElement => (
     <View style={styles.row}>
         {[0, 1, 2].map((i) => (
             <View key={i} style={styles.barContainer}>
-                {i < status ? (
+                {status >= 3 || i < status ? (
                     <View style={[styles.barBackground]}>
                         <View style={[styles.barFill, { width: '100%' }]} />
                     </View>

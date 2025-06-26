@@ -41,6 +41,9 @@ const en: lang = {
     signUp: 'Sign up',
     confirmPassword: 'Confirm password',
     password: 'Password',
+    weightTotal: "Weight total :",
+    order_success: "The order was successfully delivered",
+    order_cancel: "The order could not be delivered",
 };
 
 export { en };

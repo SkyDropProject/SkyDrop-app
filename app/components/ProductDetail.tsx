@@ -46,8 +46,7 @@ const ProductDetail = (props: ProductDetailProps): ReactElement => {
         try {
             for (let i = 0; i < quantity; i++) {
                 await axios.put('/user/cart', {
-                    productId: props.product._id,
-                    _id: userId,
+                    productId: props.product._id
                 });
             }
             showAlert('Votre produit a bien été ajouté au panier', 'success');
